@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        "OIV.Inventor.GL"
+    </assembly>
+    <members>
+        <member name="T:OIV.Inventor.InventorGLModuleInitializer">
+            <exclude />
+        </member>
+    </members>
+</doc>

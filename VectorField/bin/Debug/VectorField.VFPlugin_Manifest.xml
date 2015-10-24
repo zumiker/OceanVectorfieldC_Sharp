@@ -1,0 +1,47 @@
+<Deployment>
+  <Files>
+    <File Name="complex1.6.dll" />
+    <File Name="DialogVizWin.dll" />
+    <File Name="Inventor.dll" />
+    <File Name="InventorBase.dll" />
+    <File Name="InventorDialogs.dll" />
+    <File Name="InventorGL.dll" />
+    <File Name="InventorGui.dll" />
+    <File Name="InventorImage.dll" />
+    <File Name="InventorR.dll" />
+    <File Name="InventorWin.dll" />
+    <File Name="IvDLALut.dll" />
+    <File Name="IvDLBZlib.dll" />
+    <File Name="IvDLCSG.dll" />
+    <File Name="IvDLFreetype.dll" />
+    <File Name="IvDLJasper.dll" />
+    <File Name="IvDLJpeg.dll" />
+    <File Name="IvDLLm.dll" />
+    <File Name="IvDLOpenAL32.dll" />
+    <File Name="IvDLPng.dll" />
+    <File Name="IvDLProj4.dll" />
+    <File Name="IvDLTiff.dll" />
+    <File Name="IvDLZlib.dll" />
+    <File Name="IvDxfReader.dll" />
+    <File Name="IvFltReader.dll" />
+    <File Name="OIV.Inventor.Base.dll" />
+    <File Name="OIV.Inventor.Base.xml" />
+    <File Name="OIV.Inventor.dll" />
+    <File Name="OIV.Inventor.GL.dll" />
+    <File Name="OIV.Inventor.GL.xml" />
+    <File Name="OIV.Inventor.SbLinear.compat.dll" />
+    <File Name="OIV.Inventor.SbLinear.compat.xml" />
+    <File Name="OIV.Inventor.SbLinear.dll" />
+    <File Name="OIV.Inventor.SbLinear.xml" />
+    <File Name="OIV.Inventor.xml" />
+    <File Name="RemoteViz.dll" />
+    <File Name="ScaleViz.dll" />
+    <File Name="Slb.Ocean.Petrel.UI.Controls.dll" />
+    <File Name="Slb.Ocean.Petrel.UI.Controls.xml" />
+    <File Name="Slb.Ocean.Petrel.UI.Visualization3D.dll" />
+    <File Name="Slb.Ocean.Petrel.UI.Visualization3D.xml" />
+    <File Name="VectorField.dll" />
+    <File Name="VectorField.pdb" />
+    <File Name="VectorField.VFPlugin_Manifest.xml" />
+  </Files>
+</Deployment>

@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        "OIV.Inventor.SbLinear.compat"
+    </assembly>
+    <members>
+        <member name="P:OIV.Inventor.SbNativeArray.DataPointer">
+            <summary>
+Pointer to native array (unspecified type)
+</summary>
+        </member>
+        <member name="P:OIV.Inventor.SbNativeArray.MemorySize">
+            <summary>
+Memory occupation
+</summary>
+        </member>
+        <member name="P:OIV.Inventor.SbNativeArray.LongLength">
+            <summary>
+Array size (64 bits integer)
+</summary>
+        </member>
+        <member name="P:OIV.Inventor.SbNativeArray.Length">
+            <summary>
+Array size (32 bits integer)
+</summary>
+        </member>
+        <member name="M:OIV.Inventor.SbNativeArray.Copy(OIV.Inventor.SbNativeArray,System.Int64,OIV.Inventor.SbNativeArray,System.Int64,System.Int64)">
+            <summary>
+Copy elements from source (starting at startIndex) to destination array (starting at destinationIndex).
+</summary>
+        </member>
+        <member name="M:OIV.Inventor.SbNativeArray.Copy(OIV.Inventor.SbNativeArray,OIV.Inventor.SbNativeArray,System.Int64)">
+            <summary>
+Copy elements from source to destination array.
+</summary>
+        </member>
+        <member name="M:OIV.Inventor.SbNativeArray.Copy(OIV.Inventor.SbNativeArray,System.Int32,OIV.Inventor.SbNativeArray,System.Int32,System.Int32)">
+            <summary>
+Copy elements from source (starting at startIndex) to destination array (starting at destinationIndex).
+</summary>
+        </member>
+        <member name="M:OIV.Inventor.SbNativeArray.Copy(OIV.Inventor.SbNativeArray,OIV.Inventor.SbNativeArray,System.Int32)">
+            <summary>
+Copy elements from source to destination array.
+</summary>
+        </member>
+    </members>
+</doc>

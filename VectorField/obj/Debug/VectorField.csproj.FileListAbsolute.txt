@@ -1,0 +1,146 @@
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\VectorField.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\VectorField.pdb
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Petrel.UI.Controls.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Petrel.UI.Controls.xml
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\obj\Debug\VectorField.csprojResolveAssemblyReference.cache
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\obj\Debug\VectorField.CreateVFUI.resources
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\obj\Debug\VectorField.csproj.GenerateResource.Cache
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\obj\Debug\VectorField.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\obj\Debug\VectorField.pdb
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Catalogs.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Coordinates.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Core.ReferenceImpl.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Petrel.Configuration.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Petrel.Data.Persistence.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Petrel.DomainObject.FrameworkModeling.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Petrel.DomainObjectExtensions.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Petrel.DomainObjectExtensions.Prestack.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Petrel.Geology.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Petrel.Microseismic.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Petrel.ReservoirEngineering.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Petrel.Seismic.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Petrel.Simulation.EclipseKeywords.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Petrel.Testing.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Petrel.UI.Visualization3D.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Petrel.UI.WellSection.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Petrel.Well.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Studio.Find.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Studio.Find.Petrel.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Studio.Knowledge.Petrel.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Units.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Units.ReferenceCatalog.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Units.ReferenceImpl.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\OIV.Inventor.SbLinear.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\OIV.Inventor.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\OIV.Inventor.Base.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\OIV.Inventor.SbLinear.compat.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\OIV.Inventor.GL.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Catalogs.xml
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Coordinates.xml
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Core.ReferenceImpl.xml
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Petrel.Configuration.xml
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Petrel.Data.Persistence.xml
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Petrel.DomainObject.FrameworkModeling.xml
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Petrel.DomainObjectExtensions.xml
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Petrel.Geology.xml
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Petrel.ReservoirEngineering.xml
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Petrel.Seismic.xml
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Petrel.Simulation.EclipseKeywords.xml
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Petrel.Testing.xml
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Petrel.UI.Visualization3D.xml
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Petrel.UI.WellSection.xml
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Petrel.Well.xml
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Studio.Find.xml
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Studio.Find.Petrel.xml
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Studio.Knowledge.Petrel.xml
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Units.xml
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Slb.Ocean.Units.ReferenceImpl.xml
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\OIV.Inventor.SbLinear.xml
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\OIV.Inventor.xml
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\OIV.Inventor.Base.xml
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\OIV.Inventor.SbLinear.compat.xml
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\OIV.Inventor.GL.xml
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\complex1.6.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\InventorBase.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\Inventor.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\InventorGui.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\InventorImage.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\InventorWin.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\ScaleViz.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\RemoteViz.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\InventorDialogs.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\DialogVizWin.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\IvDLALut.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\IvDLBZlib.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\IvDLCSG.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\IvFltReader.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\IvDLJasper.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\IvDLLm.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\IvDLProj4.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\IvDLZlib.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\IvDxfReader.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\IvDLFreetype.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\IvDLJpeg.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\IvDLOpenAL32.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\IvDLPng.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\IvDLTiff.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\InventorR.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\nov_1\VectorField\VectorField\bin\Debug\InventorGL.dll
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\VectorField.dll
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\VectorField.pdb
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\Slb.Ocean.Petrel.UI.Controls.dll
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\Slb.Ocean.Petrel.UI.Visualization3D.dll
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\OIV.Inventor.SbLinear.dll
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\OIV.Inventor.dll
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\OIV.Inventor.Base.dll
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\OIV.Inventor.SbLinear.compat.dll
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\OIV.Inventor.GL.dll
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\Slb.Ocean.Petrel.UI.Controls.xml
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\Slb.Ocean.Petrel.UI.Visualization3D.xml
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\OIV.Inventor.SbLinear.xml
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\OIV.Inventor.xml
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\OIV.Inventor.Base.xml
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\OIV.Inventor.SbLinear.compat.xml
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\OIV.Inventor.GL.xml
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\complex1.6.dll
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\InventorBase.dll
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\Inventor.dll
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\InventorGui.dll
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\InventorImage.dll
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\InventorWin.dll
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\ScaleViz.dll
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\RemoteViz.dll
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\InventorDialogs.dll
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\DialogVizWin.dll
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\IvDLALut.dll
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\IvDLBZlib.dll
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\IvDLCSG.dll
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\IvFltReader.dll
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\IvDLJasper.dll
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\IvDLLm.dll
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\IvDLProj4.dll
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\IvDLZlib.dll
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\IvDxfReader.dll
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\IvDLFreetype.dll
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\IvDLJpeg.dll
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\IvDLOpenAL32.dll
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\IvDLPng.dll
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\IvDLTiff.dll
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\InventorR.dll
+C:\Users\user\Desktop\VectorField\VectorField\bin\Debug\InventorGL.dll
+C:\Users\user\Desktop\VectorField\VectorField\obj\Debug\VectorField.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\VectorField\VectorField\obj\Debug\VectorField.CreateVFUI.resources
+C:\Users\user\Desktop\VectorField\VectorField\obj\Debug\VectorField.csproj.GenerateResource.Cache
+C:\Users\user\Desktop\VectorField\VectorField\obj\Debug\VectorField.dll
+C:\Users\user\Desktop\VectorField\VectorField\obj\Debug\VectorField.pdb
+C:\Users\user\Desktop\VectorField\VectorField\obj\Debug\VectorField.Properties.Resources.resources
+C:\Users\user\Desktop\VectorField - копия (2)\VectorField\bin\Debug\VectorField.dll
+C:\Users\user\Desktop\VectorField - копия (2)\VectorField\bin\Debug\VectorField.pdb
+C:\Users\user\Desktop\VectorField - копия (2)\VectorField\bin\Debug\Slb.Ocean.Petrel.UI.Controls.dll
+C:\Users\user\Desktop\VectorField - копия (2)\VectorField\bin\Debug\Slb.Ocean.Petrel.UI.Controls.xml
+C:\Users\user\Desktop\VectorField - копия (2)\VectorField\obj\Debug\VectorField.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\VectorField - копия (2)\VectorField\obj\Debug\VectorField.CreateVFUI.resources
+C:\Users\user\Desktop\VectorField - копия (2)\VectorField\obj\Debug\VectorField.Properties.Resources.resources
+C:\Users\user\Desktop\VectorField - копия (2)\VectorField\obj\Debug\VectorField.csproj.GenerateResource.Cache
+C:\Users\user\Desktop\VectorField - копия (2)\VectorField\obj\Debug\VectorField.dll
+C:\Users\user\Desktop\VectorField - копия (2)\VectorField\obj\Debug\VectorField.pdb

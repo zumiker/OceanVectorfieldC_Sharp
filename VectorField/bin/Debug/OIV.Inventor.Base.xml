@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        "OIV.Inventor.Base"
+    </assembly>
+    <members>
+        <member name="M:OIV.Inventor.Errors.SoDebugError.SetHandlerCallback(OIV.Inventor.Errors.SoError.ErrorUserDataCallback,System.Object)">
+            <summary>
+Use HandlerCallback property instead.
+</summary>
+        </member>
+        <member name="M:OIV.Inventor.Errors.SoDebugError.SetHandlerCallback(OIV.Inventor.Errors.SoError.ErrorCallback)">
+            <summary>
+Use HandlerCallback property instead.
+</summary>
+        </member>
+        <member name="M:OIV.Inventor.Errors.SoError.SetHandlerCallback(OIV.Inventor.Errors.SoError.ErrorUserDataCallback,System.Object)">
+            <summary>
+Use HandlerCallback property instead.
+</summary>
+        </member>
+        <member name="M:OIV.Inventor.Errors.SoError.SetHandlerCallback(OIV.Inventor.Errors.SoError.ErrorCallback)">
+            <summary>
+Use HandlerCallback property instead.
+</summary>
+        </member>
+    </members>
+</doc>

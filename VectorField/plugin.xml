@@ -1,0 +1,31 @@
+<InstalledPlugins>
+  <Plugin>
+  <Name>VFPlugin</Name>
+  <Contact>contact@company.info</Contact>
+  <PluginTypeName>VectorField.VFPlugin, VectorField, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</PluginTypeName>
+  <PluginUri>http://www.pluginuri.info/</PluginUri>
+  <PluginId>://VectorField.VFPlugin/1.0.0.0</PluginId>
+  <Trust PublicKeyToken="">Default</Trust>
+  <ReleaseDate>2015-05-15</ReleaseDate>
+  <Author>Novozhencev-Gorinov</Author>
+  <AppVersion>Unknown</AppVersion>
+  <Modules>
+    <Module TypeName="VectorField.VFMod, VectorField, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      
+    </Module>
+  </Modules>
+  <Assemblies>
+    <Assembly Name="OIV.Inventor.Base, Version=9.2.3.1, Culture=neutral, PublicKeyToken=cc281c744497d5fd" />
+    <Assembly Name="OIV.Inventor, Version=9.2.3.1, Culture=neutral, PublicKeyToken=cc281c744497d5fd" />
+    <Assembly Name="OIV.Inventor.GL, Version=9.2.3.1, Culture=neutral, PublicKeyToken=cc281c744497d5fd" />
+    <Assembly Name="OIV.Inventor.SbLinear.compat, Version=9.2.3.1, Culture=neutral, PublicKeyToken=cc281c744497d5fd" />
+    <Assembly Name="OIV.Inventor.SbLinear, Version=9.2.3.1, Culture=neutral, PublicKeyToken=cc281c744497d5fd" />
+    <Assembly Name="Slb.Ocean.Petrel.UI.Controls, Version=13.1.0.0, Culture=neutral, PublicKeyToken=da9605198f529641" />
+    <Assembly Name="Slb.Ocean.Petrel.UI.Visualization3D, Version=13.1.0.0, Culture=neutral, PublicKeyToken=14ef4a483ef6a64b" />
+    <Assembly Name="VectorField, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+  </Assemblies>
+  
+  <StartMode>Startup</StartMode>
+  <StartupAction>None</StartupAction>
+</Plugin>
+</InstalledPlugins>

@@ -1,0 +1,1522 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Slb.Ocean.Petrel.UI.Visualization3D</name>
+    </assembly>
+    <members>
+        <member name="T:Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext">
+            <summary>
+            Describes the context for calls to <see cref="T:Slb.Ocean.Petrel.UI.IIntersectionRenderer3D"/>. Note that the intersection
+            referenced by the <see cref="T:Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext"/> represents a particular intersection for which a domain object 
+            is rendered. Since multiple intersections can be displayed in a single <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>, this may not be the currently 
+            active intersection.
+            </summary>
+        </member>
+        <member name="T:Slb.Ocean.Petrel.UI.Window3DRendererContext">
+            <summary>
+            Describes the context for calls to <see cref="T:Slb.Ocean.Petrel.UI.IWindow3DRenderer"/>. This object immediately
+            goes out of scope after the call, so references to this object should not be held on to.
+            </summary>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3DRendererContext.#ctor(Slb.Ocean.Petrel.UI.Window3D,System.Object,Slb.Ocean.Petrel.DomainObject.Domain,System.DateTime)">
+            <summary>
+            Constructor so that implementations of <see cref="T:Slb.Ocean.Petrel.UI.IWindow3DRenderer"/> may be tested through automated unit tests without having
+            to load the entire Ocean Petrel framework.
+            </summary>
+            <param name="window">The window in which this scenegraph lives.</param>
+            <param name="userContext">The user context for this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>-domain object pair.</param>
+            <param name="domainIfAny">The depth domain to use if <see cref="P:Slb.Ocean.Petrel.UI.Window3D.Domain"/> is set to Any/null.</param>
+            <param name="displayTime">The current time of the Petrel time player.</param>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3DRendererContext.#ctor(Slb.Ocean.Petrel.UI.Window3DRendererContext)">
+            <summary>
+            Copy constructor.
+            </summary>
+            <param name="context">The context.</param>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3DRendererContext.#ctor(Slb.Ocean.Petrel.UI.RendererCallbacks,Slb.Ocean.Petrel.UI.Window3D,Slb.Ocean.Petrel.DomainObject.Domain,System.DateTime)">
+            <summary>
+            Create a context for a window.
+            </summary>
+            <param name="scope">The scope in which this instance will be used.</param>
+            <param name="window">The window.</param>
+            <param name="domainIfAny">Domain to use if Any domain is selected.</param>
+            <param name="displayTime">Current time on Petrel time player.</param>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3DRendererContext.#ctor(Slb.Ocean.Petrel.UI.RendererCallbacks,Slb.Ocean.Petrel.UI.Window3D,System.Object,Slb.Ocean.Petrel.DomainObject.Domain,System.DateTime)">
+            <summary>
+            Creates a context for a window and a user context.
+            </summary>
+            <param name="scope">The scope in which this instance will be used.</param>
+            <param name="window">The window.</param>
+            <param name="userContext">The user context.</param>
+            <param name="domainIfAny">Domain to use if Any domain is selected.</param>
+            <param name="displayTime">Current time on Petrel time player.</param>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3DRendererContext.WorldToWindow(Slb.Ocean.Geometry.Point3)">
+            <summary>
+            Converts from world coordinates to the local coordinate system of this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> instance.
+            </summary>
+            <remarks>
+            World coordinates means easting (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.X"/>), northing (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.Y"/>) and either
+            depth(<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_DEPTH"/>) or time (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_TIME"/>).
+            </remarks>
+            <param name="coordinate">The coordinate to convert.</param>
+            <returns>The coordinate point.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="coordinate"/> is null.</exception>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3DRendererContext.WorldToWindow(System.Collections.Generic.IEnumerable{Slb.Ocean.Geometry.Point3})">
+            <summary>
+            Converts several points from world coordinates to the local coordinate system of this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> instance.
+            </summary>
+            <remarks>
+            World coordinates means easting (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.X"/>), northing (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.Y"/>) and either
+            depth(<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_DEPTH"/>) or time (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_TIME"/>).
+            </remarks>
+            <param name="points">Coordinates to convert.</param>
+            <returns>The converted coordinates.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="points"/> is null.</exception>
+            <exception cref="T:System.ArgumentException">Thrown if any supplied <see cref="T:Slb.Ocean.Geometry.Point3"/> is null.</exception>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3DRendererContext.WorldToWindow(System.Double,System.Double,System.Double)">
+            <summary>
+            Converts from world coordinates to the local coordinate system of this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> instance.
+            </summary>
+            <remarks>
+            World coordinates means easting (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.X"/>), northing (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.Y"/>) and either
+            depth(<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_DEPTH"/>) or time (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_TIME"/>).
+            This method is a duplication of <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>.WorldToWindow3D(double, double, double) for the purpose of convenience.
+            </remarks>
+            <param name="x">The x component of the coordinate to convert.</param>
+            <param name="y">The y component of the coordinate to convert.</param>
+            <param name="z">The z component of the coordinate to convert.</param>
+            <returns>The converted coordinate.</returns>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3DRendererContext.WorldToWindow(System.Collections.Generic.IEnumerable{System.Double},System.Collections.Generic.IEnumerable{System.Double},System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            Converts several coordinates from world coordinates to the local coordinate system of this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> instance.
+            </summary>
+            <remarks>
+            World coordinates means easting (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.X"/>), northing (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.Y"/>) and either
+            depth(<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_DEPTH"/>) or time (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_TIME"/>).
+            </remarks>
+            <param name="x">The x component of the coordinate to convert.</param>
+            <param name="y">The y component of the coordinate to convert.</param>
+            <param name="z">The z component of the coordinate to convert.</param>
+            <returns>The converted coordinates.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if any parameter is null.</exception>
+            <exception cref="T:System.ArgumentException">Thrown if different number of coordinates are supplied.</exception>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3DRendererContext.WindowToWorld(OIV.Inventor.SbVec3f)">
+            <summary>
+            Converts from this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> instance's local coordinate system to world coordinates.
+            </summary>
+            <remarks>
+            World coordinates means easting (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.X"/>), northing (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.Y"/>) and either
+            depth(<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_DEPTH"/>) or time (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_TIME"/>).
+            This method is a duplication of <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>.Window3DToWorld(SbVec3f) for the purpose of convenience.
+            </remarks>
+            <param name="coordinate">The coordinate to convert.</param>
+            <returns>The converted coordinate.</returns>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3DRendererContext.WindowToWorld(System.Collections.Generic.IEnumerable{OIV.Inventor.SbVec3f})">
+            <summary>
+            Converts several coordinates from this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> instance's local coordinate system to world coordinates.
+            </summary>
+            <remarks>
+            World coordinates means easting (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.X"/>), northing (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.Y"/>) and either
+            depth(<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_DEPTH"/>) or time (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_TIME"/>).
+            </remarks>
+            <param name="points">Coordinates to convert.</param>
+            <returns>Converted coordinates.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="points"/> is null.</exception>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3DRendererContext.WindowToWorld(System.Single,System.Single,System.Single)">
+            <summary>
+            Converts from this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> instance's local coordinate system to world coordinates.
+            </summary>
+            <remarks>
+            World coordinates means easting (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.X"/>), northing (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.Y"/>) and either
+            depth(<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_DEPTH"/>) or time (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_TIME"/>).
+            This method is a duplication of <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>.Window3DToWorld(float, float, float) for the purpose of convenience.
+            </remarks>
+            <param name="x">The x component of the coordinate to convert.</param>
+            <param name="y">The y component of the coordinate to convert.</param>
+            <param name="z">The z component of the coordinate to convert.</param>
+            <returns>The converted coordinate.</returns>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3DRendererContext.WindowToWorld(System.Collections.Generic.IEnumerable{System.Single},System.Collections.Generic.IEnumerable{System.Single},System.Collections.Generic.IEnumerable{System.Single})">
+            <summary>
+            Converts several coordinates from this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> instance's local coordinate system to world coordinates.
+            </summary>
+            <remarks>
+            World coordinates means easting (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.X"/>), northing (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.Y"/>) and either
+            depth(<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_DEPTH"/>) or time (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_TIME"/>).
+            </remarks>
+            <param name="x">The x component of the coordinates to convert.</param>
+            <param name="y">The y component of the coordinates to convert.</param>
+            <param name="z">The z component of the coordinates to convert.</param>
+            <returns>The converted coordinates.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if any parameter is null.</exception>
+            <exception cref="T:System.ArgumentException">Thrown if different number of coordinates are supplied.</exception>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3DRendererContext.Clone">
+            <summary>
+            Creates a shallow clone of this instance.
+            </summary>
+            <returns>Window3DRendererContext.</returns>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3DRendererContext.Equals(System.Object)">
+            <summary>
+            Check if equals to another object.
+            </summary>
+            <param name="obj">Object, compare to.</param>
+            <returns>True, if equals.</returns>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3DRendererContext.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="P:Slb.Ocean.Petrel.UI.Window3DRendererContext.DomainIfAny">
+            <summary>
+            A renderer may set this property to provide the framework with information so that correct
+            unit conversion may be applied in the case of a <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> set to the "Any" 
+            domain. 
+            </summary>
+            <exception cref="T:System.ArgumentNullException">Thrown if value is null.</exception>
+            <exception cref="T:System.ArgumentException">Thrown if invalid domain is set.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown if the property is tried to set
+            outside of <see cref="M:Slb.Ocean.Petrel.UI.IWindow3DRenderer.Create(System.Object,Slb.Ocean.Petrel.UI.Window3DRendererContext)"/> call.</exception>
+            <remarks>
+            This property should be set in <see cref="M:Slb.Ocean.Petrel.UI.IWindow3DRenderer.Create(System.Object,Slb.Ocean.Petrel.UI.Window3DRendererContext)"/> call.
+            The valid values are the same as for <see cref="P:Slb.Ocean.Petrel.UI.Window3D.Domain"/> and the default
+            value is <see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_DEPTH"/>.
+            
+            If the <see cref="T:Slb.Ocean.Petrel.DomainObject.Domain"/> of the renderring object is non-constant, please use <see cref="M:Slb.Ocean.Petrel.UI.Window3D.SetDomainIfAny(System.Object,Slb.Ocean.Petrel.DomainObject.Domain)"/>
+            to update the domain after initial creation of the renderer.
+            </remarks>
+            <seealso cref="M:Slb.Ocean.Petrel.UI.Window3D.SetDomainIfAny(System.Object,Slb.Ocean.Petrel.DomainObject.Domain)"/>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext.#ctor(Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext)">
+            <summary>
+            Copy constructor.
+            </summary>
+            <param name="context">The context.</param>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext.#ctor(Slb.Ocean.Petrel.UI.RendererCallbacks,Slb.Ocean.Petrel.UI.Window3D,Slb.Ocean.Petrel.DomainObject.Domain,Slb.Ocean.Petrel.DomainObject.IIntersectionSource,System.DateTime)">
+            <summary>
+            Create a context for a window.
+            </summary>
+            <param name="scope">The scope in which this instance will be used.</param>
+            <param name="window">The window.</param>
+            <param name="domainIfAny">Domain to use if Any domain is selected.</param>
+            <param name="intersectionSource">The domain object providing the associated intersection.</param>
+            <param name="displayTime">Current time on Petrel time player.</param>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext.#ctor(Slb.Ocean.Petrel.UI.RendererCallbacks,Slb.Ocean.Petrel.UI.Window3D,System.Object,Slb.Ocean.Petrel.DomainObject.Domain,Slb.Ocean.Petrel.DomainObject.IIntersectionSource,System.DateTime)">
+            <summary>
+            Creates a context for a window and a user context.
+            </summary>
+            <param name="scope">The scope in which this instance will be used.</param>
+            <param name="window">The window.</param>
+            <param name="userContext">The user context.</param>
+            <param name="domainIfAny">Domain to use if Any domain is selected.</param>
+            <param name="intersectionSource">The domain object providing the associated intersection.</param>
+            <param name="displayTime">Current time on Petrel time player.</param>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext.ProjectPoint(Slb.Ocean.Geometry.Point3,Slb.Ocean.Geometry.Point3[]@)">
+            <summary>
+            Projects a point onto the associated intersection in the <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>.
+            </summary>
+            <param name="point">The point to project.</param>
+            <param name="projections">The set of projections for the specified point (in World coordinates).</param>
+            <remarks>
+            For a given <see cref="T:Slb.Ocean.Petrel.DomainObject.IIntersection"/> with N <see cref="T:Slb.Ocean.Petrel.DomainObject.Facet"/>s,
+            the resulting set of points will either be of length 0, in the case that no valid projections are returned, or of length N,
+            where each resulting point corresponds to a particular <see cref="T:Slb.Ocean.Petrel.DomainObject.Facet"/>.  Note that there may be
+            valid projections for some facets but not others, in which case the resulting point is set to Point3.Null
+            (see <see cref="F:Slb.Ocean.Geometry.Point3.Null"/>). Thus the zero-length array simply replaces a length-N array containing all Null points.
+            </remarks>
+            <seealso cref="P:Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext.IntersectionSource"/>
+            <seealso cref="P:Slb.Ocean.Petrel.DomainObject.IIntersectionSource.Intersection"/>
+            <seealso cref="P:Slb.Ocean.Petrel.DomainObject.IIntersection.Facets"/>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext.ProjectPoints(Slb.Ocean.Geometry.Point3[],Slb.Ocean.Geometry.Point3[][]@)">
+            <summary>
+            Projects a set of points onto the associated intersection in the <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>.
+            </summary>
+            <param name="points">The points to project.</param>
+            <param name="projections">A two-dimensional array containing all the projections of the specified points (in World coordinates).
+            The first dimension of the array will match the input array, so that projections[m] will contain an array of projections for points[m].</param>
+            <remarks>
+            The first dimension of the array corresponds to the input array, such that projections[m] will contain an array of projections for points[m].
+            The second dimension corresponds to a particular <see cref="T:Slb.Ocean.Petrel.DomainObject.Facet"/> for a given
+            <see cref="T:Slb.Ocean.Petrel.DomainObject.IIntersection"/>.  Assuming the projection results in a valid point, projections[m][n] would correspond
+            to a projection of a single input (points[m]) onto a single plane (Facets[n]).  If a particular input/facet pair does not result in a valid
+            projection point, the result will be set to Point3.Null (see <see cref="F:Slb.Ocean.Geometry.Point3.Null"/>).  However, to consolidate the results
+            in cases that return no valid projections (all results for a given point are Null), the results array (projections[m]) for a given point will
+            be set to length 0.  Thus, for M points and N facets, the first dimension will always be an array of length M, and the second dimension will
+            be either of length N or of length 0.
+            </remarks>
+            <seealso cref="P:Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext.IntersectionSource"/>
+            <seealso cref="P:Slb.Ocean.Petrel.DomainObject.IIntersectionSource.Intersection"/>
+            <seealso cref="P:Slb.Ocean.Petrel.DomainObject.IIntersection.Facets"/>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext.ProjectLine(Slb.Ocean.Geometry.Point3,Slb.Ocean.Geometry.Point3,Slb.Ocean.Geometry.Segment3[]@)">
+            <summary>
+            Projects a line onto the associated intersection in the <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>.
+            </summary>
+            <param name="point0">The line's first point.</param>
+            <param name="point1">The line's second point.</param>
+            <param name="projections">An array containing all the projections of the specified line (in World coordinates).</param>
+            <remarks>
+            For a given <see cref="T:Slb.Ocean.Petrel.DomainObject.IIntersection"/> with N <see cref="T:Slb.Ocean.Petrel.DomainObject.Facet"/>s,
+            the resulting set of projections will either be of length 0, in the case that no valid results are returned, or of length N, where each
+            <see cref="T:Slb.Ocean.Geometry.Segment3"/> corresponds to a particular <see cref="T:Slb.Ocean.Petrel.DomainObject.Facet"/>.  Note that there
+            may be valid results for some facets but not others, in which case the resulting projection is set to Segment3.Null
+            (see <see cref="F:Slb.Ocean.Geometry.Segment3.Null"/>). Thus the zero-length array simply replaces a length-N array containing all Null points.
+            </remarks>
+            <seealso cref="P:Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext.IntersectionSource"/>
+            <seealso cref="P:Slb.Ocean.Petrel.DomainObject.IIntersectionSource.Intersection"/>
+            <seealso cref="P:Slb.Ocean.Petrel.DomainObject.IIntersection.Facets"/>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext.ProjectLine(Slb.Ocean.Geometry.Segment3,Slb.Ocean.Geometry.Segment3[]@)">
+            <summary>
+            Projects a line onto the associated intersection in the <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>.
+            </summary>
+            <param name="line">The line to project.</param>
+            <param name="projections">An array containing all the projections of the (specified line in World coordinates).</param>
+            <remarks>
+            For a given <see cref="T:Slb.Ocean.Petrel.DomainObject.IIntersection"/> with N <see cref="T:Slb.Ocean.Petrel.DomainObject.Facet"/>s,
+            the resulting set of projections will either be of length 0, in the case that no valid results are returned, or of length N, where each
+            <see cref="T:Slb.Ocean.Geometry.Segment3"/> corresponds to a particular <see cref="T:Slb.Ocean.Petrel.DomainObject.Facet"/>.  Note that there
+            may be no result for a particular facet, in which case the resulting projection is set to Segment3.Null
+            (see <see cref="F:Slb.Ocean.Geometry.Segment3.Null"/>). Thus the zero-length array simply replaces a length-N array containing all Null points.
+            </remarks>
+            <seealso cref="P:Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext.IntersectionSource"/>
+            <seealso cref="P:Slb.Ocean.Petrel.DomainObject.IIntersectionSource.Intersection"/>
+            <seealso cref="P:Slb.Ocean.Petrel.DomainObject.IIntersection.Facets"/>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext.ProjectLines(Slb.Ocean.Geometry.Segment3[],Slb.Ocean.Geometry.Segment3[][]@)">
+            <summary>
+            Projects a set of lines onto the associated intersection in the <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>.
+            </summary>
+            <param name="lines">The lines to project.</param>
+            <param name="projections">A two-dimensional array containing all the projections of the specified lines (in World coordinates).
+            The first dimension of the array will match the input array, so that projections[m] will contain an array of projections for lines[m].</param>
+            <remarks>
+            The first dimension of the array corresponds to the input array, such that projections[m] will contain an array of projections for lines[m].
+            The second dimension corresponds to a particular <see cref="T:Slb.Ocean.Petrel.DomainObject.Facet"/> for a given
+            <see cref="T:Slb.Ocean.Petrel.DomainObject.IIntersection"/>.  Assuming the projection results in a valid line, projections[m][n] would correspond
+            to a projection of a single input (lines[m]) onto a single plane (Facets[n]).  If a particular input/facet pair does not result in a valid
+            projection, the result will be set to Segment3.Null (see <see cref="F:Slb.Ocean.Geometry.Segment3.Null"/>).  However, to consolidate the results
+            in cases that return no valid projections (all results for a given line are Null), the results array (projections[m]) for a given line will
+            be set to length 0.  Thus, for M lines and N facets, the first dimension will always be an array of length M, and the second dimension will
+            be either of length N or of length 0.
+            </remarks>
+            <seealso cref="P:Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext.IntersectionSource"/>
+            <seealso cref="P:Slb.Ocean.Petrel.DomainObject.IIntersectionSource.Intersection"/>
+            <seealso cref="P:Slb.Ocean.Petrel.DomainObject.IIntersection.Facets"/>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext.IntersectLine(Slb.Ocean.Geometry.Point3,Slb.Ocean.Geometry.Point3,Slb.Ocean.Geometry.Point3[]@)">
+            <summary>
+            Intersects the specified line with the associated intersection in the <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>.
+            </summary>
+            <param name="point0">The line's first point.</param>
+            <param name="point1">The line's second point.</param>
+            <param name="intersections">The set of intersections for this line (in World coordinates).</param>
+            <remarks>
+            For a given <see cref="T:Slb.Ocean.Petrel.DomainObject.IIntersection"/> with N <see cref="T:Slb.Ocean.Petrel.DomainObject.Facet"/>s,
+            the resulting set of points will either be of length 0, in the case that no valid intersections are returned, or of length N, where
+            each point corresponds to a particular <see cref="T:Slb.Ocean.Petrel.DomainObject.Facet"/>.  Note that there may be valid intersections
+            for some facets but not for others.  In these cases, the resulting intersection is set to Point3.Null (see <see cref="F:Slb.Ocean.Geometry.Point3.Null"/>).
+            Thus the zero-length array simply replaces a length-N array containing all Null points.
+            Note that a line that lies completely within a facet plane will return no valid intersections for that plane.
+            </remarks>
+            <seealso cref="P:Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext.IntersectionSource"/>
+            <seealso cref="P:Slb.Ocean.Petrel.DomainObject.IIntersectionSource.Intersection"/>
+            <seealso cref="P:Slb.Ocean.Petrel.DomainObject.IIntersection.Facets"/>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext.IntersectLine(Slb.Ocean.Geometry.Segment3,Slb.Ocean.Geometry.Point3[]@)">
+            <summary>
+            Intersects the specified line with the associated intersection in the <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>.
+            </summary>
+            <param name="line">The line to intersect.</param>
+            <param name="intersections">The set of intersections for this line (in World coordinates).</param>
+            <remarks>
+            For a given <see cref="T:Slb.Ocean.Petrel.DomainObject.IIntersection"/> with N <see cref="T:Slb.Ocean.Petrel.DomainObject.Facet"/>s,
+            the resulting set of points will either be of length 0, in the case that no valid intersections are returned, or of length N, where
+            each point corresponds to a particular <see cref="T:Slb.Ocean.Petrel.DomainObject.Facet"/>.  Note that there may be valid intersections
+            for some facets but not for others.  In these cases, the resulting intersection is set to Point3.Null (see <see cref="F:Slb.Ocean.Geometry.Point3.Null"/>).
+            Thus the zero-length array simply replaces a length-N array containing all Null points.
+            Note that a line that lies completely within a facet plane will return no valid intersections for that plane.
+            </remarks>
+            <seealso cref="P:Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext.IntersectionSource"/>
+            <seealso cref="P:Slb.Ocean.Petrel.DomainObject.IIntersectionSource.Intersection"/>
+            <seealso cref="P:Slb.Ocean.Petrel.DomainObject.IIntersection.Facets"/>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext.IntersectLines(Slb.Ocean.Geometry.Segment3[],Slb.Ocean.Geometry.Point3[][]@)">
+            <summary>
+            Intersects a set of lines with the associated intersection in the <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>.
+            </summary>
+            <param name="lines">The lines to intersect.</param>
+            <param name="intersections">A two-dimensional array containing all the intersections of the specified lines (in World coordinates).
+            The first dimension of the array will match the input array, so that intersections[m] will contain an array of intersections for lines[m].</param>
+            <remarks>
+            The first dimension of the array corresponds to the input array, such that intersections[m] will contain an array of intersections for lines[m].
+            The second dimension corresponds to a particular <see cref="T:Slb.Ocean.Petrel.DomainObject.Facet"/> for a given
+            <see cref="T:Slb.Ocean.Petrel.DomainObject.IIntersection"/>.  Assuming the projection results in a valid line, intersections[m][n] would correspond
+            to the intersection of a single input (lines[m]) with a single plane (Facets[n]).  If a particular input/facet pair does not result in a valid
+            intersection, the result will be set to Point3.Null (see <see cref="F:Slb.Ocean.Geometry.Point3.Null"/>).  However, to consolidate the results
+            in cases that return no valid intersections (all results for a given line are Null), the results array (intersections[m]) for a given line will
+            be set to length 0.  Thus, for M lines and N facets, the first dimension will always be an array of length M, and the second dimension will
+            be either of length N or of length 0.
+            Note that a line that lies completely within a facet plane will return no valid intersections for that plane.
+            </remarks>
+            <seealso cref="P:Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext.IntersectionSource"/>
+            <seealso cref="P:Slb.Ocean.Petrel.DomainObject.IIntersectionSource.Intersection"/>
+            <seealso cref="P:Slb.Ocean.Petrel.DomainObject.IIntersection.Facets"/>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext.IntersectTriangle(Slb.Ocean.Geometry.Point3,Slb.Ocean.Geometry.Point3,Slb.Ocean.Geometry.Point3,Slb.Ocean.Geometry.Segment3[]@)">
+            <summary>
+            Intersects the specified triangle with the associated intersection in the <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>.
+            </summary>
+            <param name="point0">The triangle's first point.</param>
+            <param name="point1">The triangle's second point.</param>
+            <param name="point2">The triangles third point.</param>
+            <param name="intersections">An array containing all the intersections of the specified triangle (in World coordinates).</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="point0"/>, <paramref name="point1"/> or <paramref name="point2"/> is null.</exception>
+            <remarks>
+            For a given <see cref="T:Slb.Ocean.Petrel.DomainObject.IIntersection"/> with N <see cref="T:Slb.Ocean.Petrel.DomainObject.Facet"/>s,
+            the resulting set of segments will be of length 0, in the case that no valid intersections are returned, or of length N, where
+            each segment corresponds to a particular <see cref="T:Slb.Ocean.Petrel.DomainObject.Facet"/>.  Note that there may be valid intersections
+            for some facets but not for others.  In these cases, the resulting intersection for that facet index is set to Segment.Null
+            (see <see cref="F:Slb.Ocean.Geometry.Segment3.Null"/>).  Thus the zero-length array simply replaces a length-N array containing all Null points.
+            Note that a triangle that lies completely within a facet plane will return no valid intersections for that plane.
+            </remarks>
+            <seealso cref="P:Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext.IntersectionSource"/>
+            <seealso cref="P:Slb.Ocean.Petrel.DomainObject.IIntersectionSource.Intersection"/>
+            <seealso cref="P:Slb.Ocean.Petrel.DomainObject.IIntersection.Facets"/>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext.IntersectTriangles(System.Collections.Generic.IEnumerable{Slb.Ocean.Geometry.IndexedTriangle},System.Int32,System.Collections.Generic.IList{Slb.Ocean.Geometry.Point3},Slb.Ocean.Geometry.Segment3[][]@)">
+            <summary>
+            Intersects the specified set of triangles with the associated intersection in the <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>.
+            </summary>
+            <param name="triangles">The triangle set.</param>
+            <param name="numTriangles">The number of triangles.</param>
+            <param name="vertices">The vertices of the given set of triangles.</param>
+            <param name="intersections">An array of array containing all the intersections of each triangle(in World coordinates) in <paramref name="triangles"/>.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="triangles"/> is null, or <paramref name="vertices"/> is null.</exception>
+            <exception cref="T:System.ArgumentException">Thrown if <paramref name="vertices"/> contains a null object.</exception>
+            <remarks>
+            For a given <see cref="T:Slb.Ocean.Petrel.DomainObject.IIntersection"/> with N <see cref="T:Slb.Ocean.Petrel.DomainObject.Facet"/>s,
+            the resulting set of segments will be of length 0, in the case that no valid intersections are returned, or of length N, where
+            each segment corresponds to a particular <see cref="T:Slb.Ocean.Petrel.DomainObject.Facet"/>.  Note that there may be valid intersections
+            for some facets but not for others.  In these cases, the resulting intersection for that facet index is set to Segment.Null
+            (see <see cref="F:Slb.Ocean.Geometry.Segment3.Null"/>).  Thus the zero-length array simply replaces a length-N array containing all Null points.
+            Note that a triangle that lies completely within a facet plane will return no valid intersections for that plane.
+            </remarks>        
+            <seealso cref="P:Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext.IntersectionSource"/>
+            <seealso cref="P:Slb.Ocean.Petrel.DomainObject.IIntersectionSource.Intersection"/>
+            <seealso cref="P:Slb.Ocean.Petrel.DomainObject.IIntersection.Facets"/>
+        </member>
+        <member name="P:Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext.IntersectionSource">
+            <summary>
+            Gets the domain object providing the intersection associated with this rendering context as <see cref="T:Slb.Ocean.Petrel.DomainObject.IIntersectionSource"/>.
+            </summary>
+            <seealso cref="P:Slb.Ocean.Petrel.DomainObject.IIntersectionSource.Intersection"/>
+        </member>
+        <member name="T:Slb.Ocean.Petrel.UI.IWindow3DImpl">
+            <summary>
+            [INTERNAL]
+            Backend interface for Window3D facade.
+            This class supports the Ocean Framework infrastructure and is not intended to
+            be used directly from your code or reimplemented.
+            </summary>
+            <internal>This functionality is internal and not intended for use.</internal>
+            <exclude/>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IWindow3DImpl.WorldToWindow(Slb.Ocean.Geometry.Point3)">
+            <summary>
+            Converts from world coordinates to the local coordinate system of this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> instance.
+            </summary>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IWindow3DImpl.WorldToWindow(System.Collections.Generic.IEnumerable{Slb.Ocean.Geometry.Point3})">
+            <summary>
+            Converts several points from world coordinates to the local coordinate system of this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> instance.
+            </summary>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IWindow3DImpl.WorldToWindow(System.Double,System.Double,System.Double)">
+            <summary>
+            Converts from world coordinates to the local coordinate system of this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> instance.
+            </summary>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IWindow3DImpl.WorldToWindow(System.Collections.Generic.IEnumerable{System.Double},System.Collections.Generic.IEnumerable{System.Double},System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            Converts several coordinates from world coordinates to the local coordinate system of this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> instance.
+            </summary>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IWindow3DImpl.WindowToWorld(OIV.Inventor.SbVec3f)">
+            <summary>
+            Converts from this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> instance's local coordinate system to world coordinates.
+            </summary>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IWindow3DImpl.WindowToWorld(System.Collections.Generic.IEnumerable{OIV.Inventor.SbVec3f})">
+            <summary>
+            Converts several coordinates from this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> instance's local coordinate system to world coordinates.
+            </summary>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IWindow3DImpl.Window3DToWorld(System.Single,System.Single,System.Single)">
+            <summary>
+            Converts from this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> instance's local coordinate system to world coordinates.
+            </summary>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IWindow3DImpl.Window3DToWorld(System.Collections.Generic.IEnumerable{System.Single},System.Collections.Generic.IEnumerable{System.Single},System.Collections.Generic.IEnumerable{System.Single})">
+            <summary>
+            Converts several coordinates from this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> instance's local coordinate system to world coordinates.
+            </summary>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IWindow3DImpl.SaveIV(System.String)">
+            <summary>
+            Saves the current contents of this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> in OpenInventor IV format.
+            The <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> may be minimized, but must be open in order to export the image.
+            </summary>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IWindow3DImpl.SaveBMP(System.String)">
+            <summary>
+            Saves the current contents of this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> as a Bitmap.
+            The <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> may be minimized, but must be open in order to export the image.
+            </summary>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IWindow3DImpl.ViewAll">
+            <summary>
+            Changes the camera's position so that all visible objects fit
+            inside the <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>.
+            </summary>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IWindow3DImpl.CanShowObject(System.Object,Slb.Ocean.Petrel.DomainObject.IIntersectionSource)">
+            <summary>
+            Returns whether the specified object can be set to visible for intersection rendering in this window.
+            Called by the system to decide whether a blue checkbox should be displayed in the tree for the specified object 
+            when plane visualization is toggled on.
+            </summary>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IWindow3DImpl.ShowObject(System.Object,Slb.Ocean.Petrel.DomainObject.IIntersectionSource)">
+            <summary>
+            Shows the specified object in the 3D window on the specified <see cref="T:Slb.Ocean.Petrel.DomainObject.IIntersection"/>.
+            If the given intersection is not currently visible in the 3D window, the intersection itself will be shown as well.
+            A given object may be displayed simultaneously both with regular 3D rendering and on any number of intersections within the same 3D window.
+            Note that currently the intersection must be visible in the 3D window before calling this method.
+            </summary>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IWindow3DImpl.HideObject(System.Object,Slb.Ocean.Petrel.DomainObject.IIntersectionSource)">
+            <summary>
+            Hides the object, so that it is no longer displayed on the specified <see cref="T:Slb.Ocean.Petrel.DomainObject.IIntersection"/>
+            in this 3D window.  The given intersection must be visible in the 3D window at the time of the call.
+            A given object may be displayed simultaneously both with regular 3D rendering and on any number of intersections within the same 3D window.
+            This call will hide only the visualization for the specified intersection.
+            Note that currently the intersection must be visible in the 3D window before calling this method.
+            </summary>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IWindow3DImpl.IsVisible(System.Object,Slb.Ocean.Petrel.DomainObject.IIntersectionSource)">
+            <summary>
+            Returns whether the specified object is currently displayed on the given <see cref="T:Slb.Ocean.Petrel.DomainObject.IIntersection"/>
+            in this 3D window.  A given object may be displayed simultaneously both with regular 3D rendering and on any number of intersections 
+            within the same 3D window.  This call will return only the object's visibility for the specified intersection.
+            Note that currently the intersection must be visible in the 3D window before calling this method.
+            </summary>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IWindow3DImpl.Invalidate(System.Object)">
+            <summary>
+            Schedules a redraw for the specified domain object in this specific window. NONE of the methods or properties on 
+            <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> should ever require a subsequent call to this method to achieve the desired effect. Excess calls 
+            to this method may lead to serious future performance issues.
+            </summary>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IWindow3DImpl.ForceRedraw">
+            <summary>
+            Triggers a forced, synchronous, immediate redraw of this window. NONE of the methods or properties on <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>
+            should ever require a subsequent call to this method to achieve the desired effect. Excess calls to 
+            this method will lead to serious future performance issues.
+            </summary>
+        </member>
+        <member name="P:Slb.Ocean.Petrel.UI.IWindow3DImpl.Text">
+            <summary>
+            Gets or sets the text to display in the explorer for this window.
+            </summary>
+        </member>
+        <member name="P:Slb.Ocean.Petrel.UI.IWindow3DImpl.ZScale">
+            <summary>
+            Gets or sets the current Z-scale of this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>. The 3D Window does automatic
+            scaling of the entire scenegraph using a global SoScale node. The
+            Z-scale value returned by this property may be used to perform
+            un-scaling of symbolic geometry, such as annotation or <see cref="T:Slb.Ocean.Petrel.DomainObject.Well.Borehole"/> trajectories.
+            Changing this property will cause a call to <see cref="M:Slb.Ocean.Petrel.UI.IWindow3DRenderer.Update(OIV.Inventor.Nodes.SoNode,System.Object,Slb.Ocean.Petrel.UI.Window3DRendererContext)"/> and <see cref="M:Slb.Ocean.Petrel.UI.IIntersectionRenderer3D.Update(OIV.Inventor.Nodes.SoNode,System.Object,Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext)"/>.
+            </summary>
+        </member>
+        <member name="P:Slb.Ocean.Petrel.UI.IWindow3DImpl.Is2D">
+            <summary>
+            Specifies whether this is a 2D or 3D Window. The 2D Window works very much like the
+            3D window, just that it&apos;s camera position is fixed to one of the axis.
+            </summary>
+        </member>
+        <member name="P:Slb.Ocean.Petrel.UI.IWindow3DImpl.Camera3D">
+            <summary>
+            Gets the OpenInventor SoCamera node used in this 3D window; adjust coordinates to Petrel UI unit context.
+            </summary>
+        </member>
+        <member name="P:Slb.Ocean.Petrel.UI.IWindow3DImpl.Domain">
+            <summary>
+            Gets or sets the current domain setting for this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>. The currently
+            supported domains are 
+            <list type="bullet">
+            <item> <see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_DEPTH"/> (GUI equivalent: TVD)</item>
+            <item> <see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_TIME"/> (GUI equivalent: TWT)</item>
+            <item> or null (GUI equivalent: Any); this Domain value cannot be set!</item>
+            </list>
+            Changing this property will cause a call to <see cref="M:Slb.Ocean.Petrel.UI.IWindow3DRenderer.Update(OIV.Inventor.Nodes.SoNode,System.Object,Slb.Ocean.Petrel.UI.Window3DRendererContext)"/> and
+            <see cref="M:Slb.Ocean.Petrel.UI.IIntersectionRenderer3D.Update(OIV.Inventor.Nodes.SoNode,System.Object,Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext)"/>.
+            </summary>
+        </member>
+        <member name="P:Slb.Ocean.Petrel.UI.IWindow3DImpl.ShowAxis">
+            <summary>
+            Gets or sets whether the axis are visible.
+            </summary>
+        </member>
+        <member name="P:Slb.Ocean.Petrel.UI.IWindow3DImpl.ShowAutoLegend">
+            <summary>
+            Gets or sets whether the auto legend is visible.
+            </summary>
+        </member>
+        <member name="P:Slb.Ocean.Petrel.UI.IWindow3DImpl.FullScreen">
+            <summary>
+            Gets or sets this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> to full screen mode.
+            </summary>
+        </member>
+        <member name="T:Slb.Ocean.Petrel.UI.Intersection3DPickedPoint">
+            <summary>
+            Represents a picked point associated with a 3D intersection in a <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>. The <see cref="T:Slb.Ocean.Petrel.UI.Intersection3DPickedPoint"/>
+            is first instantiated by the framework and filled with all available information.  It is then passed on to the <see cref="T:Slb.Ocean.Petrel.UI.IIntersectionPicking3D"/>
+            implementation for the domain object hit, which can then provide additional information.  It eventually ends up with the active <see cref="T:Slb.Ocean.Petrel.UI.WindowMode"/>.
+            In the case of picking in <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>s, the <see cref="P:Slb.Ocean.Petrel.UI.PickedPoint.World"/> property should always return valid values 
+            for non-null values of <see cref="N:Slb.Ocean.Petrel.DomainObject"/>. If the <see cref="M:Slb.Ocean.Petrel.UI.IIntersectionPicking3D.GetPickInfo(System.Object,Slb.Ocean.Petrel.UI.Intersection3DPickedPoint,Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext)"/>
+            implementation for the hit domain object does not set the <see cref="P:Slb.Ocean.Petrel.UI.PickedPoint.World"/> property, 
+            <see cref="P:Slb.Ocean.Petrel.UI.Window3DPickedPoint.WorldHit"/> will be returned as a fallback.
+            </summary>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.IIntersectionRenderer3D"/>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.Window3DPickedPoint"/>
+        </member>
+        <member name="T:Slb.Ocean.Petrel.UI.Window3DPickedPoint">
+            <summary>
+            Represents a picked point in a <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>. Instantiated by the framework and filled with all available information,
+            then passed on to the <see cref="T:Slb.Ocean.Petrel.UI.IWindow3DPicking"/> implementation for the domain object hit, so that it can provide
+            additional information, before it eventually ends up with the active <see cref="T:Slb.Ocean.Petrel.UI.WindowMode"/>. In the case of picking 
+            in <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>s, the <see cref="P:Slb.Ocean.Petrel.UI.PickedPoint.World"/> property should always return valid values 
+            for non-null values of <see cref="P:Slb.Ocean.Petrel.UI.PickedPoint.DomainObject"/>. If the <see cref="M:Slb.Ocean.Petrel.UI.IWindow3DPicking.GetPickInfo(System.Object,Slb.Ocean.Petrel.UI.Window3DPickedPoint,Slb.Ocean.Petrel.UI.Window3DRendererContext)"/>
+            implementation for the hit domain object does not set the <see cref="P:Slb.Ocean.Petrel.UI.PickedPoint.World"/> property, 
+            <see cref="P:Slb.Ocean.Petrel.UI.Window3DPickedPoint.WorldHit"/> will be returned as a fallback.
+            </summary>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.IWindow3DPicking"/>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.IIntersectionPicking3D"/>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3DPickedPoint.#ctor(Slb.Ocean.Petrel.UI.Window3DPickedPoint)">
+            <summary>
+            [INTERNAL] Constructor
+            </summary>
+            <internal>This functionality is internal and not intended for use.</internal>
+            <exclude/>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3DPickedPoint.Copy">
+            <summary>
+            Creates a shallow copy of the current <see cref="T:Slb.Ocean.Petrel.UI.Window3DPickedPoint"/> instance.
+            </summary>
+            <returns>Copy of PickedPoint.</returns>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3DPickedPoint.ToString">
+            <summary>
+            Returns a string that represents the current <see cref="T:Slb.Ocean.Petrel.UI.Window3DPickedPoint"/> instance.
+            </summary>
+            <returns>Object, converted to string.</returns>
+        </member>
+        <member name="P:Slb.Ocean.Petrel.UI.Window3DPickedPoint.Pixel">
+            <summary>
+            The local pixel coordinate for the picked point. Origin is in upper left corner of the
+            <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>. X is counting positive towards right, Y is counting positive downwards.
+            Will always return valid values, regardless if an object was hit or not. Will also return
+            valid values if a drag motion is partially/ended outside the window.
+            </summary>
+        </member>
+        <member name="P:Slb.Ocean.Petrel.UI.Window3DPickedPoint.Ray">
+            <summary>
+            Gets the ray describing this point. Will always return valid values, regardless if
+            an object was hit or not. If <see cref="P:Slb.Ocean.Petrel.UI.Window3D.Is2D"/> returns true for the window in
+            which the event happened, the Z component of the ray's origin will always return 0.
+            </summary>
+        </member>
+        <member name="P:Slb.Ocean.Petrel.UI.Window3DPickedPoint.WorldHit">
+            <summary>
+            Gets the actually hit world coordinate for the point. As opposed to the <see cref="P:Slb.Ocean.Petrel.UI.Window3DPickedPoint.World"/> property, this can not
+            be set/changed by the <see cref="T:Slb.Ocean.Petrel.UI.IWindow3DPicking"/> implementations. Will return valid values for
+            non-null values of <see cref="P:Slb.Ocean.Petrel.UI.PickedPoint.DomainObject"/>, otherwise returns null.
+            </summary>
+            <remarks>
+            For technical/historical reasons, there is a limitation in the internal Petrel framework so that any pick of a 
+            native domain object will return the same value as for <see cref="P:Slb.Ocean.Petrel.UI.Window3DPickedPoint.World"/>.
+            </remarks>
+        </member>
+        <member name="P:Slb.Ocean.Petrel.UI.Window3DPickedPoint.PickPath">
+            <summary>
+            The OpenInventor SoPath object describing the path through the scenegraph, starting at the root of the scenegraph created
+            by the <see cref="T:Slb.Ocean.Petrel.UI.IWindow3DRenderer"/> for the hit domain object and ending with the actual OpenInventor node hit. 
+            </summary>
+            <remarks>
+            All native Petrel renderers will return null to avoid exposure of application internals.  Picking implementations may also
+            choose to set this value to null in order to hide details of their own rendering implementations.  When doing so, it is
+            also recommended to clear the value of the <see cref="P:Slb.Ocean.Petrel.UI.Window3DPickedPoint.PickDetail"/> property as well.
+            </remarks>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.IWindow3DRenderer"/>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.IIntersectionPicking3D"/>
+        </member>
+        <member name="P:Slb.Ocean.Petrel.UI.Window3DPickedPoint.PickDetail">
+            <summary>
+            [SubjectToChange]
+            The OpenInventor SoPickedPoint object describing the pick in the scenegraph.  This object can be queried for more detailed
+            pick information such as the SoDetail of the picked node in the OpenInventor scenegraph.
+            </summary>
+            <remarks>
+            All native Petrel renderers will return null to avoid exposure of application internals.  Picking implementations may also
+            choose to set this value to null in order to hide details of their own rendering implementations.  Please note that as the
+            <see cref="P:Slb.Ocean.Petrel.UI.Window3DPickedPoint.PickPath"/> property can also be modified, this may cause a disparity between the <see cref="P:Slb.Ocean.Petrel.UI.Window3DPickedPoint.PickPath"/> property
+            and the value of SoPickedPoint.GetPath().  Applications are strongly encouraged to use the <see cref="P:Slb.Ocean.Petrel.UI.Window3DPickedPoint.PickPath"/> property
+            rather than SoPickedPoint.GetPath().
+            </remarks>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.IWindow3DRenderer"/>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.IIntersectionPicking3D"/>
+            <SubjectToChange>The underlying implementation may change, which may cause subsequent changes to this API.</SubjectToChange>
+        </member>
+        <member name="P:Slb.Ocean.Petrel.UI.Window3DPickedPoint.World">
+            <summary>
+            Please see <see cref="P:Slb.Ocean.Petrel.UI.PickedPoint.World"/>
+            </summary>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Intersection3DPickedPoint.Copy">
+            <summary>
+            Creates a shallow copy of the current <see cref="T:Slb.Ocean.Petrel.UI.Window3DPickedPoint"/> instance.
+            </summary>
+            <returns><see cref="T:Slb.Ocean.Petrel.UI.Window3DPickedPoint"/> instance</returns>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Intersection3DPickedPoint.ToString">
+            <summary>
+            Returns a string that represents the current <see cref="T:Slb.Ocean.Petrel.UI.Window3DPickedPoint"/> instance.
+            </summary>
+            <returns>Object, converted to string.</returns>
+        </member>
+        <member name="P:Slb.Ocean.Petrel.UI.Intersection3DPickedPoint.Intersection">
+            <summary>
+            The intersection on which the point was picked.
+            </summary>
+        </member>
+        <member name="T:Slb.Ocean.Petrel.UI.IWindow3DPicking">
+            <summary>
+            This interface should be implemented by an <see cref="T:Slb.Ocean.Petrel.UI.IWindow3DRenderer"/>
+            that wants to take part in interactive workflows (please see <see cref="T:Slb.Ocean.Petrel.UI.WindowMode"/>).
+            </summary>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.Window3D"/>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.IWindow3DRenderer"/>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.IMapPicking"/>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.IIntersectionPicking"/>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.WindowMode"/>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.Window3DPickedPoint"/>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.PickedPoint"/>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IWindow3DPicking.GetPickInfo(System.Object,Slb.Ocean.Petrel.UI.Window3DPickedPoint,Slb.Ocean.Petrel.UI.Window3DRendererContext)">
+            <summary>
+            Called by the framework to ask the renderer to fill in additional information regarding a given ray/point. This callback
+            should not be seen as a callback to handle interactive events, please use the <see cref="T:Slb.Ocean.Petrel.UI.WindowMode"/> class for this
+            purpose. By using the scenegraph provided by <see cref="T:Slb.Ocean.Petrel.UI.IWindow3DRenderer"/>, 
+            the framework will automatically detect whether a domain object was hit or not. The framework
+            will then call <see cref="M:Slb.Ocean.Petrel.UI.IWindow3DPicking.GetPickInfo(System.Object,Slb.Ocean.Petrel.UI.Window3DPickedPoint,Slb.Ocean.Petrel.UI.Window3DRendererContext)"/> for that domain object, so that the 
+            implementation can fill the <see cref="T:Slb.Ocean.Petrel.UI.Window3DPickedPoint"/> with additional information. The 
+            <see cref="M:Slb.Ocean.Petrel.UI.IWindow3DPicking.GetPickInfo(System.Object,Slb.Ocean.Petrel.UI.Window3DPickedPoint,Slb.Ocean.Petrel.UI.Window3DRendererContext)"/> implementation may choose to set the <see cref="P:Slb.Ocean.Petrel.UI.PickedPoint.World"/>
+            property, for example in the case of "snapping" the actual hit value. Otherwise, the <see cref="P:Slb.Ocean.Petrel.UI.PickedPoint.World"/>
+            will return the <see cref="P:Slb.Ocean.Petrel.UI.Window3DPickedPoint.WorldHit"/> as a fallback. The <see cref="T:Slb.Ocean.Petrel.UI.Window3DPickedPoint"/>
+            instance will be passed on to the active <see cref="T:Slb.Ocean.Petrel.UI.WindowMode"/>. Other optional data may also be filled in, 
+            such as <see cref="P:Slb.Ocean.Petrel.UI.PickedPoint.PickString"/> which the active
+            <see cref="T:Slb.Ocean.Petrel.UI.WindowMode"/> may choose to display in Petrel's status bar.
+            </summary>
+            <param name="domainObject">Picked domain object.</param>
+            <param name="point">Coordinate information.</param>
+            <param name="context">Additional context information.</param>
+            <remarks>
+            Please note that the <see cref="P:Slb.Ocean.Petrel.UI.PickedPoint.ModifierKeys"/> will always return System.Windows.Forms.Keys.None as
+            this information should be irrelevant for the renderer to provide the pick information. The same goes for <see cref="P:Slb.Ocean.Petrel.UI.PickedPoint.ControlIsPressed"/> 
+            and <see cref="P:Slb.Ocean.Petrel.UI.PickedPoint.ShiftIsPressed"/>, which will always return false.
+            </remarks>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.PickedPoint"/>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.Window3DPickedPoint"/>
+        </member>
+        <member name="T:Slb.Ocean.Petrel.UI.IIntersectionPicking3D">
+            <summary>
+            This interface should be implemented by an <see cref="T:Slb.Ocean.Petrel.UI.IIntersectionRenderer3D"/>
+            that wants to take part in interactive workflows (please see <see cref="T:Slb.Ocean.Petrel.UI.WindowMode"/>).
+            </summary>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.Window3D"/>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.IWindow3DPicking"/>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.Intersection3DPickedPoint"/>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.Window3DPickedPoint"/>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.PickedPoint"/>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IIntersectionPicking3D.GetPickInfo(System.Object,Slb.Ocean.Petrel.UI.Intersection3DPickedPoint,Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext)">
+            <summary>
+            Called by the framework to ask the renderer to fill in additional information regarding a given ray/point. This callback
+            should not be seen as a callback to handle interactive events, please use the <see cref="T:Slb.Ocean.Petrel.UI.WindowMode"/> class for this
+            purpose.
+            </summary>
+            <param name="domainObj">Picked domain object.</param>
+            <param name="point">Coordinate information.</param>
+            <param name="context">Additional context information.</param>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.Intersection3DPickedPoint"/>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.Window3DPickedPoint"/>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.PickedPoint"/>
+            <remarks>
+            By using the scenegraph provided by <see cref="T:Slb.Ocean.Petrel.UI.IIntersectionRenderer3D"/>, 
+            the framework will automatically detect whether a domain object was hit or not. The framework
+            will then call <see cref="M:Slb.Ocean.Petrel.UI.IIntersectionPicking3D.GetPickInfo(System.Object,Slb.Ocean.Petrel.UI.Intersection3DPickedPoint,Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext)"/> for that domain object, so that the 
+            implementation can fill the <see cref="T:Slb.Ocean.Petrel.UI.Intersection3DPickedPoint"/> with additional information. The 
+            <see cref="M:Slb.Ocean.Petrel.UI.IIntersectionPicking3D.GetPickInfo(System.Object,Slb.Ocean.Petrel.UI.Intersection3DPickedPoint,Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext)"/> implementation may choose to set the <see cref="P:Slb.Ocean.Petrel.UI.PickedPoint.World"/>
+            property, for example in the case of "snapping" the actual hit value. Otherwise, the <see cref="P:Slb.Ocean.Petrel.UI.PickedPoint.World"/>
+            will return the <see cref="P:Slb.Ocean.Petrel.UI.Window3DPickedPoint.WorldHit"/> as a fallback. The <see cref="T:Slb.Ocean.Petrel.UI.Intersection3DPickedPoint"/>
+            instance will be passed on to the active <see cref="T:Slb.Ocean.Petrel.UI.WindowMode"/>. Other optional data may also be filled in, 
+            such as <see cref="P:Slb.Ocean.Petrel.UI.PickedPoint.PickString"/> which the active <see cref="T:Slb.Ocean.Petrel.UI.WindowMode"/> may choose to display in Petrel's status bar.
+            Please note that the <see cref="P:Slb.Ocean.Petrel.UI.PickedPoint.ModifierKeys"/> will always return System.Windows.Forms.Keys.None as this information should 
+            be irrelevant for the renderer to provide the pick information. The same goes for <see cref="P:Slb.Ocean.Petrel.UI.PickedPoint.ControlIsPressed"/> and 
+            <see cref="P:Slb.Ocean.Petrel.UI.PickedPoint.ShiftIsPressed"/>, which will always return false.
+            </remarks>
+        </member>
+        <member name="T:Slb.Ocean.Petrel.UI.IWindow3DRenderer">
+            <summary>
+            An interface to provide the framework with capabilities to draw a visual representation (aka "render") 
+            a custom domain object in a <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>. 
+            It is strongly recommended that implementations also implement <see cref="T:Slb.Ocean.Petrel.UI.IWindow3DPicking"/> so that 
+            the different interactive tools (<see cref="T:Slb.Ocean.Petrel.UI.WindowMode"/>) will be able to handle this renderer properly.
+            Implementations must be registered with the <see cref="P:Slb.Ocean.Core.CoreSystem.Services"/> to extend
+            the capabilities of the <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>. The methods will be called in the following order:
+            <list type="bullet">
+            <item> <see cref="M:Slb.Ocean.Petrel.UI.IWindow3DRenderer.CanCreate(System.Object,Slb.Ocean.Petrel.UI.Window3DRendererContext)"/> (possibly several times)</item>
+            <item> <see cref="M:Slb.Ocean.Petrel.UI.IWindow3DRenderer.Create(System.Object,Slb.Ocean.Petrel.UI.Window3DRendererContext)"/></item>
+            <item> <see cref="M:Slb.Ocean.Petrel.UI.IWindow3DRenderer.Update(OIV.Inventor.Nodes.SoNode,System.Object,Slb.Ocean.Petrel.UI.Window3DRendererContext)"/> (possibly several times)</item>
+            <item> <see cref="M:Slb.Ocean.Petrel.UI.IWindow3DRenderer.Dispose(OIV.Inventor.Nodes.SoNode,System.Object,Slb.Ocean.Petrel.UI.Window3DRendererContext)"/>.</item>
+            </list>
+            </summary>
+            <remarks>
+            <example>
+            <code source="..\..\Petrel\InlineSamples\ServiceLocated.cs" region="ServiceLocatorSample" lang="cs"/>
+            </example>
+            </remarks>
+            <remarks>
+            <para>The presence of draggers, manipulators or other mouseevent-collecting nodes in the scenegraph should always be
+            associated with an active, user defined process. For example, a dragger to manipulate "MyDomainObject" should only
+            be a part of the scenegraph for "MyDomainObject" whenever the process "ManipulateMyDomainObjectProcess" is active.
+            Otherwise, this dragger will be constantly present in the <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> and may interfere with other
+            Petrel processes/tools which need the mouse events. Please also consider implementing a custom <see cref="T:Slb.Ocean.Petrel.UI.WindowMode"/>
+            as an alternative to using OpenInventor draggers/manipulators.</para>
+            
+            <para>Multithreaded operations on OIV objects are not supported.</para>
+            
+            <note type="implementnotes">
+            When evaluating the <see cref="T:Slb.Ocean.Petrel.UI.Window3DRendererContext"/> to recover the window's
+            <see cref="T:Slb.Ocean.Petrel.DomainObject.Domain"/>, please be aware that the window can be 
+            operated in 'Any' domain; this returns the Domain as null.</note>
+            </remarks>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.Window3D"/>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.Window3DRendererContext"/>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.IWindow3DPicking"/>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.IIntersectionRenderer3D"/>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.IMapRenderer"/>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.IIntersectionRenderer"/>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.IElementBehavior"/>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.ElementBehaviors"/>
+            
+            <devdoc>
+            <status overall="Inception"/>
+            <review date="04jan06" who="HLudvigsen, TVik">
+            DONE: Split Get into Create and Update.
+            DONE: Add Dispose(SoNode, object, Window3D) when Window3D.
+            DONE: Rename CanGet to CanCreate.
+            DONE: Rename context to window.
+            </review>
+            </devdoc>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IWindow3DRenderer.CanCreate(System.Object,Slb.Ocean.Petrel.UI.Window3DRendererContext)">
+            <summary>
+            Called by the framework to determine whether the specified domain object 
+            can be drawn given the current state of the application and rendering context. 
+            Returning false will result in a grayed out checkbox.
+            </summary>
+            <param name="domainObj">The object to draw.</param>
+            <param name="context">Context information.</param>
+            <returns>
+            Returning false will result in a grayed out checkbox. Returning true
+            will result in a normal checkbox. 
+            </returns>
+            <remarks>
+            Please see <see cref="T:Slb.Ocean.Petrel.UI.IElementBehavior"/>, <see cref="T:Slb.Ocean.Petrel.UI.ElementBehaviors"/>, and
+            the Petrel UI guide for more details on data tree node behavior 
+            (UI elements -&gt; PanePattern -&gt; Node format summary).
+            </remarks>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.IElementBehavior"/>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IWindow3DRenderer.Create(System.Object,Slb.Ocean.Petrel.UI.Window3DRendererContext)">
+            <summary>
+            Called the first time a scenegraph is needed to represent a domain object
+            in a 3D windows. This method will be called once for each new 3D window where the
+            domain object is visualized. The factory can choose to share the same scenegraph
+            among several 3D windows. For each call to <see cref="M:Slb.Ocean.Petrel.UI.IWindow3DRenderer.Create(System.Object,Slb.Ocean.Petrel.UI.Window3DRendererContext)"/> there will be one
+            call to <see cref="M:Slb.Ocean.Petrel.UI.IWindow3DRenderer.Dispose(OIV.Inventor.Nodes.SoNode,System.Object,Slb.Ocean.Petrel.UI.Window3DRendererContext)"/>.
+            </summary>
+            <param name="domainObj">The domainobject to create a scenegraph for.</param>
+            <param name="context">The <see cref="T:Slb.Ocean.Petrel.UI.Window3DRendererContext"/> instance in which this scenegraph will live.</param>
+            <returns>The scenegraph's root node.</returns>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IWindow3DRenderer.Update(OIV.Inventor.Nodes.SoNode,System.Object,Slb.Ocean.Petrel.UI.Window3DRendererContext)">
+            <summary>
+            Called each time the scenegraph for the specified domain object may need an update because of changes
+            in the state of Petrel or the associated <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> instance.  
+            This means every time the <see cref="P:Slb.Ocean.Petrel.UI.Window3D.ZScale"/> changes, every time <see cref="P:Slb.Ocean.Petrel.UI.Window3D.Domain"/> changes and
+            whenever the domain object's checkbox gets toggled on or off. If the scenegraph is not dependent on any
+            of these values, the method can safely be left empty. Please note that changes in the associated domain object 
+            state must be handled through the domain object's own event handling mechanism.
+            </summary>
+            <param name="node">The root node of the scenegraph that previously returned by <see cref="M:Slb.Ocean.Petrel.UI.IWindow3DRenderer.Create(System.Object,Slb.Ocean.Petrel.UI.Window3DRendererContext)"/> for
+            the given domain object.</param>
+            <param name="domainObj">The domain object which scenegraph needs an update.</param>
+            <param name="context">The <see cref="T:Slb.Ocean.Petrel.UI.Window3DRendererContext"/> this scenegraph lives in.</param>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IWindow3DRenderer.Dispose(OIV.Inventor.Nodes.SoNode,System.Object,Slb.Ocean.Petrel.UI.Window3DRendererContext)">
+            <summary>
+            Called to tell a given [<see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>, domain object] pair that all associated renderer resources should 
+            be released and cleaned up. This call will always correspond to one (and only one) former call to <see cref="M:Slb.Ocean.Petrel.UI.IWindow3DRenderer.Create(System.Object,Slb.Ocean.Petrel.UI.Window3DRendererContext)"/>
+            with the same [<see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>, domain object] pair. The method is called by the framework when 
+            <list type="bullet">
+            <item> one or both of the associated <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> or domain object is deleted from the project</item>
+            <item> if the current project is closed.</item>
+            <item> if the domain object object is currently hidden and Petrel's free memory command is run (<see cref="M:Slb.Ocean.Petrel.PetrelSystem.ForceFreeMemory"/>). If the 
+            domain object ever becomes visible again, <see cref="M:Slb.Ocean.Petrel.UI.IWindow3DRenderer.Create(System.Object,Slb.Ocean.Petrel.UI.Window3DRendererContext)"/> will be called.</item>
+            </list>
+            At this point, the factory should clean up any resources associated with the scenegraph. Please note that the OpenInventor scenegraph 
+            itself need not be disposed manually as OpenInventor takes care of this. Only associated resources should be disposed.
+            </summary>
+            <param name="node">The root node of the scenegraph previously returned by <see cref="M:Slb.Ocean.Petrel.UI.IWindow3DRenderer.Create(System.Object,Slb.Ocean.Petrel.UI.Window3DRendererContext)"/>.</param>
+            <param name="domainObj">The domain object which scenegraph should be disposed.</param>
+            <param name="context">The <see cref="T:Slb.Ocean.Petrel.UI.Window3DRendererContext"/> this scenegraph lived in.</param>
+        </member>
+        <member name="T:Slb.Ocean.Petrel.UI.Window3D">
+            <summary>
+            Represents an instance of a 3D window.
+            </summary>
+            <remarks>
+            <para>
+            Some domain objects may be associated with positions and coordinates of very large
+            numbers. X and Y could e.g. be several hundred millions of meters. OpenInventor uses floats to
+            store coordinate data, and values in the scale of hundreds of millions may introduce inaccuracies
+            in special situations with picking, manipulators etc. To handle this, <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> instances
+            keep a local coordinate system which must be respected by any OpenInventor scenegraphs that want to be
+            rendered in the correct place relative to other objects. This transformation is made possible through the
+            <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>.Window3DToWorld(SbVec3f) and <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>.WorldToWindow3D(Point3) methods.
+            See also the interface <see cref="T:Slb.Ocean.Petrel.UI.IWindow3DRenderer"/> which provides the OpenInventor scenegraphs for this
+            <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>.
+            </para>
+            
+            <para>
+            For OpenInventor.Net reference manual, please find it in the Help directory.
+            </para>
+            
+            <para>
+            Window-specific domain objects can be added to the window in the Petrel tree by using the 
+            <see cref="P:Slb.Ocean.Petrel.Basics.IExtensionsSource.Extensions"/> property.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3D.#ctor(Slb.Ocean.Petrel.UI.IWindow3DImpl)">
+            <summary>
+            Initializes this instance by wrapping a new bridge instance.
+            </summary>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3D.CanShowTypeCore(System.Type)">
+            <summary>
+            Returns whether the specified type can be visualized in this window.
+            </summary>
+            <param name="domainObjType">Type of domain object.</param>
+            <returns>
+            <see cref="F:Slb.Ocean.Petrel.UI.ToggleWindowTypeSupport.All"/> if all instances of the given Type can be set to visible;
+            <see cref="F:Slb.Ocean.Petrel.UI.ToggleWindowTypeSupport.None"/> if no instance of the given Type can be set to visible;
+            <see cref="F:Slb.Ocean.Petrel.UI.ToggleWindowTypeSupport.Some"/> if some instances of the Type can be set to visible, but others cannot
+            </returns>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3D.CanShowObjectCore(System.Object)">
+            <summary>
+            Returns whether the specified object can be set to visible in this window.
+            This method is called by the system to determine whether a checkbox should be displayed
+            in the tree for the specified object.  This method may be called
+            very often, so be aware that lengthy processing may lead to performance issues.
+            </summary>
+            <param name="domainObj">The object to check.</param>
+            <returns>
+            	<b>true</b> if the object may be set to visible; otherwise, <b>false</b>.
+            </returns>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3D.ShowObjectCore(System.Object)">
+            <summary>
+            Visualizes the specified object in the window&apos;s control.
+            </summary>
+            <param name="domainObj">The object to show.</param>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3D.HideObjectCore(System.Object)">
+            <summary>
+            Hides the object, so that it is no longer visible in the window.
+            </summary>
+            <param name="domainObj">The object to hide.</param>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3D.IsVisibleCore(System.Object)">
+            <summary>
+            Returns whether or not the specified object is visible in this window.
+            </summary>
+            <param name="domainObj">The object for which to return visibility.</param>
+            <returns>
+            	<b>true</b> if the object is visible in this window; otherwise, <b>false</b>.
+            </returns>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3D.GetVisibleObjectsEnumeratorCore">
+            <summary>
+            Returns an IEnumerator to access the list of objects currently visible in this window.
+            </summary>
+            <returns>An IEnumerator to access the list of objects currently visible in this window.</returns>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3D.CreateControlCore">
+            <summary>
+            Creates and returns a WinForms control that contains the visualization for this <see cref="T:Slb.Ocean.Petrel.UI.ToggleWindow"/>.
+            </summary>
+            <returns>
+            The WinForms control that contains the visualization for this window.
+            </returns>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3D.DisposeControlCore">
+            <summary>
+            Called when the <see cref="T:Slb.Ocean.Petrel.UI.ToggleWindow"/> goes out of scope. This could be caused by
+            the <see cref="T:Slb.Ocean.Petrel.UI.ToggleWindow"/> being removed, the project closing or the application closing.
+            The framework is responsible for calling this method at the appropriate times. The framework will not call
+            IDisposable.Dispose on the control returned from <see cref="M:Slb.Ocean.Petrel.UI.Window3D.CreateControlCore"/>.
+            </summary>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3D.WorldToWindow(Slb.Ocean.Geometry.Point3)">
+            <summary>
+            Converts from world coordinates to the local coordinate system of this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> instance.
+            <remarks>
+            World coordinates means easting (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.X"/>), northing (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.Y"/>) and either
+            depth(<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_DEPTH"/>) or time (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_TIME"/>).
+            Undefined points are returned as SbVec3f(NaN, NaN, NaN).
+            </remarks>
+            </summary>
+            <param name="coordinate">The coordinate to convert.</param>
+            <returns>The coordinate point.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="coordinate"/> is null.</exception>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3D.WorldToWindow(System.Collections.Generic.IEnumerable{Slb.Ocean.Geometry.Point3})">
+            <summary>
+            Converts several points from world coordinates to the local coordinate system of this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> instance.
+            </summary>
+            <remarks>
+            World coordinates means easting (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.X"/>), northing (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.Y"/>) and either
+            depth(<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_DEPTH"/>) or time (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_TIME"/>).
+            Undefined points are returned as SbVec3f(NaN, NaN, NaN).
+            </remarks>
+            <param name="points">Coordinates to convert.</param>
+            <returns>The converted coordinates.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="points"/> is null.</exception>
+            <exception cref="T:System.ArgumentException">Thrown if any supplied <see cref="T:Slb.Ocean.Geometry.Point3"/> is null.</exception>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3D.WorldToWindow(System.Double,System.Double,System.Double)">
+            <summary>
+            Converts from world coordinates to the local coordinate system of this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> instance.
+            </summary>
+            <remarks>
+            World coordinates means easting (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.X"/>), northing (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.Y"/>) and either
+            depth(<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_DEPTH"/>) or time (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_TIME"/>).
+            Undefined points are returned as SbVec3f(NaN, NaN, NaN).
+            </remarks>
+            <param name="x">The x component of the coordinate to convert.</param>
+            <param name="y">The y component of the coordinate to convert.</param>
+            <param name="z">The z component of the coordinate to convert.</param>
+            <returns>The converted coordinate.</returns>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3D.WorldToWindow(System.Collections.Generic.IEnumerable{System.Double},System.Collections.Generic.IEnumerable{System.Double},System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            Converts several coordinates from world coordinates to the local coordinate system of this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> instance.
+            </summary>
+            <remarks>
+            World coordinates means easting (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.X"/>), northing (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.Y"/>) and either
+            depth(<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_DEPTH"/>) or time (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_TIME"/>).
+            Undefined points are returned as SbVec3f(NaN, NaN, NaN).
+            </remarks>
+            <param name="x">The x component of the coordinate to convert.</param>
+            <param name="y">The y component of the coordinate to convert.</param>
+            <param name="z">The z component of the coordinate to convert.</param>
+            <returns>The converted coordinates.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if any parameter is null.</exception>
+            <exception cref="T:System.ArgumentException">Thrown if different number of coordinates are supplied.</exception>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3D.WindowToWorld(OIV.Inventor.SbVec3f)">
+            <summary>
+            Converts from this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> instance's local coordinate system to world coordinates.
+            </summary>
+            <remarks>
+            World coordinates means easting (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.X"/>), northing (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.Y"/>) and either
+            depth(<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_DEPTH"/>) or time (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_TIME"/>).
+            Undefined points are returned as Point3.Null.
+            </remarks>
+            <param name="coordinate">The coordinate to convert.</param>
+            <returns>The converted coordinate.</returns>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3D.WindowToWorld(System.Collections.Generic.IEnumerable{OIV.Inventor.SbVec3f})">
+            <summary>
+            Converts several coordinates from this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> instance's local coordinate system to world coordinates.
+            </summary>
+            <remarks>
+            World coordinates means easting (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.X"/>), northing (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.Y"/>) and either
+            depth(<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_DEPTH"/>) or time (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_TIME"/>).
+            Undefined points are returned as Point3.Null.
+            </remarks>
+            <param name="points">Coordinates to convert.</param>
+            <returns>Converted coordinates.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="points"/> is null.</exception>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3D.WindowToWorld(System.Single,System.Single,System.Single)">
+            <summary>
+            Converts from this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> instance's local coordinate system to world coordinates.
+            </summary>
+            <remarks>
+            World coordinates means easting (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.X"/>), northing (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.Y"/>) and either
+            depth(<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_DEPTH"/>) or time (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_TIME"/>).
+            Undefined points are returned as Point3.Null.
+            </remarks>
+            <param name="x">The x component of the coordinate to convert.</param>
+            <param name="y">The y component of the coordinate to convert.</param>
+            <param name="z">The z component of the coordinate to convert.</param>
+            <returns>The converted coordinate.</returns>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3D.WindowToWorld(System.Collections.Generic.IEnumerable{System.Single},System.Collections.Generic.IEnumerable{System.Single},System.Collections.Generic.IEnumerable{System.Single})">
+            <summary>
+            Converts several coordinates from this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> instance's local coordinate system to world coordinates.
+            </summary>
+            <remarks>
+            World coordinates means easting (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.X"/>), northing (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.Y"/>) and either
+            depth(<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_DEPTH"/>) or time (<see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_TIME"/>).
+            Undefined points are returned as Point3.Null.
+            </remarks>
+            <param name="x">The x component of the coordinates to convert.</param>
+            <param name="y">The y component of the coordinates to convert.</param>
+            <param name="z">The z component of the coordinates to convert.</param>
+            <returns>The converted coordinates.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if any parameter is null.</exception>
+            <exception cref="T:System.ArgumentException">Thrown if different number of coordinates are supplied.</exception>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3D.SaveIV(System.String)">
+            <summary>
+            Saves the current contents of this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> in OpenInventor IV format.
+            The <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> may be minimized, but must be open in order to export the image.
+            </summary>
+            <param name="fileName">The absolute path and filename (including extension) for the resulting file.</param>
+            <exception cref="T:System.ArgumentException">If the path and/or filename is empty or poorly formed.</exception>
+            <exception cref="T:System.InvalidOperationException">If any error occurs during export.</exception>
+            <remarks>
+            The filename need not end with any specific extension, but many applications require the appropriate ".iv" filename suffix to read the file.
+            </remarks>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3D.SaveBMP(System.String)">
+            <summary>
+            Saves the current contents of this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> as a Bitmap.
+            The <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> may be minimized, but must be open in order to export the image.
+            </summary>
+            <param name="fileName">The absolute path and filename (including extension) for the resulting bitmap file.</param>
+            <exception cref="T:System.ArgumentException">If the path and/or filename is empty or poorly formed.</exception>
+            <exception cref="T:System.InvalidOperationException">If an error occurs during export or if this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> is not open.</exception>
+            <remarks>
+            The exported image will match the view and size of the <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>.  Any existing file of the same file path will be overwritten.
+            The filename need not end with any specific extension, but some downstream applications may require the appropriate ".bmp" filename suffix.
+            </remarks>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3D.ViewAll">
+            <summary>
+            Changes the camera's position so that all visible objects fit
+            inside the <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>.
+            </summary>
+            <remarks>
+            This operation will have no effect on an invisible <see cref="T:Slb.Ocean.Petrel.UI.ToggleWindow"/>. Please see
+            <see cref="T:Slb.Ocean.Petrel.UI.IToggleWindows"/> for hiding and showing <see cref="T:Slb.Ocean.Petrel.UI.ToggleWindow"/>s.</remarks>
+            <exception cref="T:System.InvalidOperationException">If this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> is not open.</exception>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3D.CanShowObject(System.Object,Slb.Ocean.Petrel.DomainObject.IIntersectionSource)">
+            <summary>
+            Returns whether the specified object can be set to visible for intersection rendering in this window.
+            Called by the system to decide whether a blue checkbox should be displayed in the tree for the specified object 
+            when plane visualization is toggled on.
+            </summary>
+            <param name="domainObj">The object to be shown.</param>
+            <param name="intersection">An intersection on which to display the object.</param>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.IIntersectionRenderer3D"/>
+            <returns><b>true</b> if the object may be set to visible for 3D intersection rendering; otherwise, <b>false</b>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="domainObj"/> or <paramref name="intersection"/> is null.</exception>
+            <exception cref="T:System.ArgumentException">Thrown if <paramref name="domainObj"/> or <paramref name="intersection"/> cannot be found in the tree.</exception>
+            <seealso cref="M:Slb.Ocean.Petrel.UI.ToggleWindow.CanShowObject(System.Object)"/>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3D.ShowObject(System.Object,Slb.Ocean.Petrel.DomainObject.IIntersectionSource)">
+            <summary>
+            Shows the specified object in the 3D window on the specified <see cref="T:Slb.Ocean.Petrel.DomainObject.IIntersection"/>.
+            If the given intersection is not currently visible in the 3D window, the intersection itself will be shown as well.
+            A given object may be displayed simultaneously both with regular 3D rendering and on any number of intersections within the same 3D window.
+            Note that currently the intersection must be visible in the 3D window before calling this method.
+            </summary>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.IIntersectionRenderer3D"/>
+            <param name="domainObj">The object to show.</param>
+            <param name="intersection">The intersection on which to display the object.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="domainObj"/> or <paramref name="intersection"/> is null.</exception>
+            <exception cref="T:System.ArgumentException">Thrown if <paramref name="domainObj"/> or <paramref name="intersection"/> cannot be found in the tree.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown if the <paramref name="intersection"/> is not visible in the 3D window.</exception>
+            <remarks>
+            If the object cannot be shown on the 3D intersection plane, the call may be ignored.
+            The specified object's blue checkbox will be checked in the tree only when the blue "Toggle Visualization on Plane" button 
+            is activated for the given <see cref="T:Slb.Ocean.Petrel.DomainObject.IIntersectionSource"/>.
+            </remarks>
+            <seealso cref="M:Slb.Ocean.Petrel.UI.ToggleWindow.ShowObject(System.Object)"/>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3D.HideObject(System.Object,Slb.Ocean.Petrel.DomainObject.IIntersectionSource)">
+            <summary>
+            Hides the object, so that it is no longer displayed on the specified <see cref="T:Slb.Ocean.Petrel.DomainObject.IIntersection"/>
+            in this 3D window.  The given intersection must be visible in the 3D window at the time of the call.
+            A given object may be displayed simultaneously both with regular 3D rendering and on any number of intersections within the same 3D window.
+            This call will hide only the visualization for the specified intersection.
+            Note that currently the intersection must be visible in the 3D window before calling this method.
+            </summary>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.IIntersectionRenderer3D"/>
+            <param name="domainObj">The object to hide.</param>
+            <param name="intersection">The general intersection on which the object is currently displayed.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="domainObj"/> or <paramref name="intersection"/> is null.</exception>
+            <exception cref="T:System.ArgumentException">Thrown if <paramref name="domainObj"/> or <paramref name="intersection"/> cannot be found in the tree.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown if the <paramref name="intersection"/> is not visible in the 3D window.</exception>
+            <remarks>
+            If the "Toggle Visualization on Plane" blue button for the given <see cref="T:Slb.Ocean.Petrel.DomainObject.IIntersectionSource"/>
+            is activated, the specified object's blue checkbox will be unchecked in the tree.
+            </remarks>
+            <seealso cref="M:Slb.Ocean.Petrel.UI.ToggleWindow.HideObject(System.Object)"/>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3D.IsVisible(System.Object,Slb.Ocean.Petrel.DomainObject.IIntersectionSource)">
+            <summary>
+            Returns whether the specified object is currently displayed on the given <see cref="T:Slb.Ocean.Petrel.DomainObject.IIntersection"/>
+            in this 3D window.  A given object may be displayed simultaneously both with regular 3D rendering and on any number of intersections 
+            within the same 3D window.  This call will return only the object's visibility for the specified intersection.
+            Note that currently the intersection must be visible in the 3D window before calling this method.
+            </summary>
+            <remarks>
+            Please note that even if this method returns true for a given domain object, the domain object may still not be actually visible on the
+            screen. For example, if a surface is to be intersected with a plane, but the geometry of these two objects are located so far apart that 
+            they never intersect, nothing will be displayed. The same effect will occur if a domain object is outside the plane's Distance Limit. 
+            The state of this method should however always reflect the corresponding state of the domain object's checkbox in the tree.
+            </remarks>
+            <param name="domainObj">The object for which to return visibility.</param>
+            <param name="intersection">The intersection to check for the object's visibility.</param>
+            <returns><b>true</b> if the object is displayed on the given intersection, and the intersection is visible in this 3D window; otherwise, <b>false</b>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="domainObj"/> or <paramref name="intersection"/> is null.</exception>
+            <exception cref="T:System.ArgumentException">Thrown if <paramref name="domainObj"/> or <paramref name="intersection"/> cannot be found in the tree.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown if the <paramref name="intersection"/> is not visible in the 3D window.</exception>
+            <seealso cref="M:Slb.Ocean.Petrel.UI.ToggleWindow.IsVisible(System.Object)"/>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.IIntersectionRenderer3D"/>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3D.Invalidate(System.Object)">
+            <summary>
+            Schedules a redraw for the specified domain object in this specific window. NONE of the methods or properties on 
+            <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> should ever require a subsequent call to this method to achieve the desired effect. Excess calls 
+            to this method may lead to serious future performance issues.
+            </summary>
+            <remarks>Note that this simply invalidates the window and does not trigger a synchronized redraw. The intended use for this method is 
+            when a domain object has changed and needs to tell the window to redraw.
+            This is the equivalent of calling "Touch" on the scenegraph for the specified domain object, 
+            and hence causing a redraw/call to GLRender but <see cref="M:Slb.Ocean.Petrel.UI.IWindow3DRenderer.Update(OIV.Inventor.Nodes.SoNode,System.Object,Slb.Ocean.Petrel.UI.Window3DRendererContext)"/> 
+            will not be raised.
+            </remarks>
+            <param name="domainObj">The domain object to invalidate.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="domainObj"/> is null.</exception>
+            <exception cref="T:System.ArgumentException">Thrown if <paramref name="domainObj"/> is not in the tree.</exception>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3D.ForceRedraw">
+            <summary>
+            Triggers a forced, synchronous, immediate redraw of this window. NONE of the methods or properties on <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>
+            should ever require a subsequent call to this method to achieve the desired effect. Excess calls to 
+            this method will lead to serious future performance issues.
+            </summary>
+            <remarks>
+            Calling this method might be very costly performance wise, and should only be called when strictly necessary and only from code 
+            that displays the "Model" or changes he displayed "Model" of the Model-View-Controller pattern in a long operation, 
+            such as <see cref="T:Slb.Ocean.Petrel.Workflow.Process"/> implementations.
+            ForceRedraw will not only redraw your object, but everything else on the screen. 
+            If you simply need to flag your object as "ready for redraw", aka "dirty", please use 
+            <see cref="M:Slb.Ocean.Petrel.UI.Window3D.Invalidate(System.Object)"/> method instead.
+            </remarks>
+            <seealso cref="M:Slb.Ocean.Petrel.UI.Window3D.Invalidate(System.Object)"/>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3D.SetDomainIfAny(System.Object,Slb.Ocean.Petrel.DomainObject.Domain)">
+            <summary>
+            Notify a "Any" domain <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> that a rendered object has changed its domain.
+            It will cause an update of the scenegrpah (an call to IWindow3DRenderer.Update for the specificed <paramref name="domainObj"/>)
+            </summary>
+            <param name="domainObj">The object for which to set DomainIfAny.</param>
+            <param name="newDomain">The new <see cref="P:Slb.Ocean.Petrel.UI.Window3D.Domain"/></param>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="domainObj"/> or <paramref name="newDomain"/> is null.</exception>
+            <exception cref="T:System.ArgumentException">Thrown if <paramref name="domainObj"/> cannot be found in the tree.</exception>
+            <exception cref="T:System.ArgumentException">Thrown if invalid domain is set.</exception>
+            <remarks>
+            Calling this method unnecessarily may cause performance issues. This method should _not_ be 
+            called if the <see cref="P:Slb.Ocean.Petrel.UI.Window3D.Domain"/> of the object is constant.
+            </remarks>
+            <seealso cref="P:Slb.Ocean.Petrel.UI.Window3DRendererContext.DomainIfAny"/>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.Window3D.ToString">
+            <summary>
+            Returns a String that represents the current Object.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Slb.Ocean.Petrel.UI.Window3D.IsWindowLink">
+            <summary>
+            [INTERNAL] This property is only for internal calls by the framework.
+            Indicates that this ToggleWindow is actually just a link to a C++ Petrel window.
+            </summary>
+        </member>
+        <member name="P:Slb.Ocean.Petrel.UI.Window3D.Droid">
+            <summary>
+            The droid which is the identity of this object. The Droid can not be null.
+            </summary>
+        </member>
+        <member name="P:Slb.Ocean.Petrel.UI.Window3D.Extensions">
+            <summary>
+            Gets the <see cref="T:Slb.Ocean.Petrel.Basics.IExtensions"/> of the domain object, the accessor to domain data model extensions.
+            </summary>
+            <value></value>
+        </member>
+        <member name="E:Slb.Ocean.Petrel.UI.Window3D.ExtensionsChanged">
+            <summary>
+            Event raised when the collection of the extensions has been changed.
+            </summary>
+            <exception cref="T:System.ArgumentNullException">Thrown if the supplied delegate is null.</exception>
+        </member>
+        <member name="P:Slb.Ocean.Petrel.UI.Window3D.Impl">
+            <summary>
+            Gets the type-safe implementation object associated with this facade.
+            </summary>
+        </member>
+        <member name="P:Slb.Ocean.Petrel.UI.Window3D.Slb#Ocean#Petrel#Basics#ILinkFacade#Impl">
+            <summary>
+            Gets the implementation object associated with this facade.
+            </summary>
+        </member>
+        <member name="P:Slb.Ocean.Petrel.UI.Window3D.ZScale">
+            <summary>
+            Gets or sets the current Z-scale of this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>. The 3D Window does automatic
+            scaling of the entire scenegraph using a global SoScale node. The
+            Z-scale value returned by this property may be used to perform
+            un-scaling of symbolic geometry, such as annotation or <see cref="T:Slb.Ocean.Petrel.DomainObject.Well.Borehole"/> trajectories.
+            Changing this property will cause a call to <see cref="M:Slb.Ocean.Petrel.UI.IWindow3DRenderer.Update(OIV.Inventor.Nodes.SoNode,System.Object,Slb.Ocean.Petrel.UI.Window3DRendererContext)"/> and <see cref="M:Slb.Ocean.Petrel.UI.IIntersectionRenderer3D.Update(OIV.Inventor.Nodes.SoNode,System.Object,Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext)"/>.
+            </summary>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown if value is equal to or less than zero, Min or Max Infinity, or NaN.</exception>
+        </member>
+        <member name="P:Slb.Ocean.Petrel.UI.Window3D.Is2D">
+            <summary>
+            Specifies whether this is a 2D or 3D Window. The 2D Window works very much like the
+            3D window, just that it's camera position is fixed to one of the axis.
+            </summary>
+            <returns>Tells whether this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> is 2D.</returns>
+        </member>
+        <member name="P:Slb.Ocean.Petrel.UI.Window3D.Camera3D">
+            <summary>
+            Gets the OpenInventor SoCamera node used in this 3D window; adjust coordinates to Petrel UI unit context.
+            </summary>
+            <remarks>
+            The OpenInventor SoCamera node is defined in the unit context of the Petrel UI (display units as defined in the templates).
+            The Ocean API generally provides data in the SI base units. Use the conversion support in 
+            <see cref="T:Slb.Ocean.Petrel.PetrelUnitSystem" />.
+            </remarks>
+            <seealso cref="T:Slb.Ocean.Petrel.PetrelUnitSystem"/>
+            <example>
+            To set the camera&apos;s position in world coordinates (SI):
+            <code source="..\..\Petrel\InlineSamples\UI\IWindow3D\CameraControl\CameraControl.cs" region="UI.Window3D.CameraControl" lang="cs" />
+            </example>
+        </member>
+        <member name="P:Slb.Ocean.Petrel.UI.Window3D.Domain">
+            <summary>
+            Gets or sets the current domain setting for this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>. The currently
+            supported domains are 
+            <list type="bullet">
+            <item> <see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_DEPTH"/> (GUI equivalent: TVD)</item>
+            <item> <see cref="P:Slb.Ocean.Petrel.DomainObject.Domain.ELEVATION_TIME"/> (GUI equivalent: TWT)</item>
+            <item> or null (GUI equivalent: Any); this Domain value cannot be set!</item>
+            </list>
+            Changing this property will cause a call to <see cref="M:Slb.Ocean.Petrel.UI.IWindow3DRenderer.Update(OIV.Inventor.Nodes.SoNode,System.Object,Slb.Ocean.Petrel.UI.Window3DRendererContext)"/> and
+            <see cref="M:Slb.Ocean.Petrel.UI.IIntersectionRenderer3D.Update(OIV.Inventor.Nodes.SoNode,System.Object,Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext)"/>.
+            </summary>
+            <remarks>
+            The property will return null if a domain is not yet selected by the end user (corresponding to "Any" in Petrel's GUI).
+            </remarks>
+            <value>The <see cref="T:Slb.Ocean.Petrel.DomainObject.Domain"/> for this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>.</value>
+            <exception cref="T:System.ArgumentException">Unsupported domain or null.</exception>
+            <seealso cref="T:Slb.Ocean.Petrel.DomainObject.Domain"/>
+            <seealso cref="P:Slb.Ocean.Petrel.UI.Window3DRendererContext.DomainIfAny"/>
+        </member>
+        <member name="P:Slb.Ocean.Petrel.UI.Window3D.ShowAxis">
+            <summary>
+            Gets or sets whether the axis are visible.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">If this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> is hidden.</exception>
+        </member>
+        <member name="P:Slb.Ocean.Petrel.UI.Window3D.ShowAutoLegend">
+            <summary>
+            Gets or sets whether the auto legend is visible.
+            </summary>
+            <remarks>
+            To make auto legend work for custom domain objects you 
+            must define either <see cref="T:Slb.Ocean.Petrel.UI.TemplateInfo"/>,
+            <see cref="T:Slb.Ocean.Petrel.UI.DictionaryTemplateInfo"/> or 
+            <see cref="T:Slb.Ocean.Petrel.UI.DomainInfo"/>.</remarks>
+            <exception cref="T:System.InvalidOperationException">If this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> is hidden.</exception>
+        </member>
+        <member name="P:Slb.Ocean.Petrel.UI.Window3D.FullScreen">
+            <summary>
+            Gets or sets this <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> to full screen mode.
+            </summary>
+            <remarks>
+            Setting this property to true hides all the menus and toolbars and the only way to revert the screen size back to normal is 
+            setting this property to false.
+            </remarks>
+        </member>
+        <member name="T:Slb.Ocean.Petrel.UI.IIntersectionRenderer3D">
+            <summary>
+            An interface to enable the framework to render or draw a visual representation of a custom domain object
+            with relation to an intersection plane in a <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>.  It is strongly recommended that implementations
+            also implement <see cref="T:Slb.Ocean.Petrel.UI.IIntersectionPicking3D"/> so that the different interactive tools (<see cref="T:Slb.Ocean.Petrel.UI.WindowMode"/>)
+            will be able to handle this renderer properly.  Implementations must be registered with the
+            <see cref="P:Slb.Ocean.Core.CoreSystem.Services"/> to extend the capabilities of the <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/>.
+            The methods will be called in the following order:
+            <list type="bullet">
+            <item> <see cref="M:Slb.Ocean.Petrel.UI.IIntersectionRenderer3D.CanCreate(System.Object,Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext)"/> (possibly several times)</item>
+            <item> <see cref="M:Slb.Ocean.Petrel.UI.IIntersectionRenderer3D.Create(System.Object,Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext)"/></item>
+            <item> <see cref="M:Slb.Ocean.Petrel.UI.IIntersectionRenderer3D.Update(OIV.Inventor.Nodes.SoNode,System.Object,Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext)"/> (possibly several times)</item>
+            <item> <see cref="M:Slb.Ocean.Petrel.UI.IIntersectionRenderer3D.Dispose(OIV.Inventor.Nodes.SoNode,System.Object,Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext)"/>.</item>
+            </list>
+            </summary>
+            <remarks>
+            <example>
+            <code source="..\..\Petrel\InlineSamples\ServiceLocated.cs" region="ServiceLocatorSample" lang="cs"/>
+            </example>
+            </remarks>
+            <remarks>
+            <para>The presence of draggers, manipulators or other mouseevent-collecting nodes in the scenegraph should always be
+            associated with an active, user defined process. For example, a dragger to manipulate "MyDomainObject" should only
+            be a part of the scenegraph for "MyDomainObject" whenever the process "ManipulateMyDomainObjectProcess" is active.
+            Otherwise, this dragger will be constantly present in the <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> and may interfere with other
+            Petrel processes/tools which need the mouse events. Please also consider implementing a custom <see cref="T:Slb.Ocean.Petrel.UI.WindowMode"/>
+            as an alternative to using OpenInventor draggers/manipulators.</para>
+            
+            <para>When evaluating the <see cref="T:Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext"/> to recover the window's
+            <see cref="T:Slb.Ocean.Petrel.DomainObject.Domain"/>, please be aware that the window can be 
+            operated in 'Any' domain; this returns the Domain as null.</para>
+            
+            <para>3D intersection rendering is supported only for those types of intersection planes that
+            implement <see cref="T:Slb.Ocean.Petrel.DomainObject.IIntersectionSource"/>.</para>
+            
+            <para>Consider also implementing <see cref="T:Slb.Ocean.Petrel.DomainObject.IStatisticsFactory"/>.  When displaying a General
+            Intersection, the plane expands and collapses as various objects are toggled on and off in the Petrel tree.  This is
+            based on the locations and extents of the visible objects.  To maintain this behavior for a custom domain object, implement
+            <see cref="T:Slb.Ocean.Petrel.DomainObject.IStatisticsFactory"/> to provide the spatial statistics
+            for the object being rendered.</para>
+            
+            <para>Multithreaded operations on OIV objects are not supported.</para>
+            
+            </remarks>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.Window3D"/>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext"/>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.IIntersectionPicking3D"/>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.IWindow3DRenderer"/>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.IIntersectionRenderer"/>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.IMapRenderer"/>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.IElementBehavior"/>
+            <seealso cref="T:Slb.Ocean.Petrel.DomainObject.IIntersection"/>
+            <seealso cref="T:Slb.Ocean.Petrel.DomainObject.IIntersectionSource"/>
+            <seealso cref="T:Slb.Ocean.Petrel.DomainObject.IStatisticsFactory"/>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IIntersectionRenderer3D.CanCreate(System.Object,Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext)">
+            <summary>
+            Called by the framework to determine whether the specified domain object can be displayed
+            on a particular intersection, given the current state of the application and rendering context. 
+            Returning false will result in a grayed-out blue checkbox when the "Toggle Visualization on Plane"
+            blue button for the given intersection is toggled on.
+            </summary>
+            <param name="domainObj">The object to display.</param>
+            <param name="context">The <see cref="T:Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext"/> describing the current rendering context.</param>
+            <returns>
+            Returning false will result in a grayed-out blue checkbox when "Toggle Visualization on Plane" is activated
+            for the given intersection. Returning true will result in a normal blue checkbox when the plane visualization
+            is toggled on.
+            </returns>
+            <remarks>
+            If an <see cref="T:Slb.Ocean.Petrel.UI.IWindow3DRenderer"/> is registered for the given domain object, and the "Toggle
+            Visualization on Plane" blue button is not activated, the normal checkbox will appear to enable the user
+            to show the object using the normal 3D rendering.  If there is no <see cref="T:Slb.Ocean.Petrel.UI.IWindow3DRenderer"/> 
+            registered, no checkbox will appear unless the blue button is toggled on.
+            </remarks>
+            <seealso cref="T:Slb.Ocean.Petrel.UI.IElementBehavior"/>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IIntersectionRenderer3D.Create(System.Object,Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext)">
+            <summary>
+            Called the first time a scenegraph is needed to represent a domain object for a given intersection in a
+            3D window.  This method will be called for each intersection in each 3D window where the domain object
+            is visualized. If the intersection is hidden in the 3D window and then redisplayed, a new <see cref="M:Slb.Ocean.Petrel.UI.IIntersectionRenderer3D.Create(System.Object,Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext)"/>
+            call will be made.  For each call to <see cref="M:Slb.Ocean.Petrel.UI.IIntersectionRenderer3D.Create(System.Object,Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext)"/> there will be one call to <see cref="M:Slb.Ocean.Petrel.UI.IIntersectionRenderer3D.Dispose(OIV.Inventor.Nodes.SoNode,System.Object,Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext)"/>.
+            </summary>
+            <param name="domainObj">The domain object for which to create a scenegraph.</param>
+            <param name="context">The <see cref="T:Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext"/> describing the context in which this scenegraph lives.</param>
+            <returns>The root node of the scenegraph.</returns>
+            <remarks>
+            Note that showing and hiding an intersection displaying a given domain object will cause additional calls to the
+            <see cref="M:Slb.Ocean.Petrel.UI.IIntersectionRenderer3D.Create(System.Object,Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext)"/> and <see cref="M:Slb.Ocean.Petrel.UI.IIntersectionRenderer3D.Dispose(OIV.Inventor.Nodes.SoNode,System.Object,Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext)"/> methods.
+            </remarks>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IIntersectionRenderer3D.Update(OIV.Inventor.Nodes.SoNode,System.Object,Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext)">
+            <summary>
+            Called each time the scenegraph may need to be updated for the specified domain object and intersection. This includes every time
+            the <see cref="P:Slb.Ocean.Petrel.UI.Window3D.ZScale"/> changes, every time the <see cref="P:Slb.Ocean.Petrel.UI.Window3D.Domain"/> changes, whenever the domain object's
+            corresponding blue checkbox is toggled on or off, and whenever the associated intersection changes.
+            </summary>
+            <param name="node">The root node of the scenegraph for the given domain object (previously returned by <see cref="M:Slb.Ocean.Petrel.UI.IIntersectionRenderer3D.Create(System.Object,Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext)"/>).</param>
+            <param name="domainObj">The domain object whose scenegraph may need to be updated.</param>
+            <param name="context">The <see cref="T:Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext"/> in which this scenegraph lives.</param>
+            <remarks>
+            Note that when the intersection plane player is used to play or step an intersection plane, <see cref="M:Slb.Ocean.Petrel.UI.IIntersectionRenderer3D.Update(OIV.Inventor.Nodes.SoNode,System.Object,Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext)"/> will
+            be called for each increment.
+            </remarks>
+        </member>
+        <member name="M:Slb.Ocean.Petrel.UI.IIntersectionRenderer3D.Dispose(OIV.Inventor.Nodes.SoNode,System.Object,Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext)">
+            <summary>
+            Called when the intersection is hidden or when the <see cref="T:Slb.Ocean.Petrel.UI.Window3D"/> containing the visible scenegraph is removed,
+            e.g. with a call to <see cref="T:Slb.Ocean.Petrel.UI.IToggleWindows"/>.Remove.
+            At this point, the factory should clean up any resources associated with the scenegraph. Note that the OpenInventor
+            scenegraph itself need not be disposed manually as OpenInventor takes care of this. Only associated resources should be disposed.
+            </summary>
+            <param name="node">The root node of the scenegraph (previously returned by <see cref="M:Slb.Ocean.Petrel.UI.IIntersectionRenderer3D.Create(System.Object,Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext)"/>).</param>
+            <param name="domainObj">The domain object whose scenegraph should be disposed.</param>
+            <param name="context">The <see cref="T:Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext"/> in which this scenegraph lived.</param>
+            <remarks>
+            Note that showing and hiding an intersection displaying a given domain object will cause additional calls to the
+            <see cref="M:Slb.Ocean.Petrel.UI.IIntersectionRenderer3D.Create(System.Object,Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext)"/> and <see cref="M:Slb.Ocean.Petrel.UI.IIntersectionRenderer3D.Dispose(OIV.Inventor.Nodes.SoNode,System.Object,Slb.Ocean.Petrel.UI.IntersectionRenderer3DContext)"/> methods.  Additionally, if the Dispose call is the result of the Petrel project
+            closing, the information in the context may no longer be available.  In this case, consider using the 
+            Slb.Ocean.Petrel.UI.RendererContext&lt;T&gt;.UserContext to cache any relevant data that may still be needed at this point.
+            </remarks>
+        </member>
+    </members>
+</doc>
